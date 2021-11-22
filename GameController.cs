@@ -10,14 +10,23 @@ namespace Sudoku_Games
     public class GameController : IGameController
     {
         private MainWindow view;
-        public Board grid { get; }
+        public Board board;
 
-        public GameController(MainWindow view, Board grid)
+        public GameController(MainWindow view, Board board)
         {
-            this.grid = grid;
+            this.board = board;
             this.view = view;
         }
 
-       public Board Grid => grid;
+        public Board GetBoard()
+        {
+            return board;
+        }
+
+        public void setCellValue(int row, int col, int value)
+        {
+            board.getGrid().SetValue(row, col, value);
+        }
+       public Board Grid => board;
     }
 }

@@ -55,10 +55,24 @@ namespace Sudoku_Games.Model
             grid[ligne, colone] = cell;
         }
 
+        public int geTCellValue(int ligne, int colone)
+        { 
+           return  grid[ligne, colone].getValue();
+        }
+
+        public void SeTCellValue(int ligne, int colone, int value)
+        {
+            grid[ligne, colone].setValue(value);
+        }
+
         public Cell[] GetRow(int row)
         {
             return Enumerable.Range(0, cote).Select(x => grid[row, x]).ToArray();
         }
+
+
+
+
         public Cell[] GetCol(int col)
         {
             return Enumerable.Range(0, cote).Select(x => grid[x, col]).ToArray();
@@ -86,7 +100,12 @@ namespace Sudoku_Games.Model
         {
             Cell cellToCheck = GetCell(row, col);
 
+            //if(cellToCheck.getValue() != 0)
+            //    return !CheckDoublonCellInArrayCell(GetRow(row), cellToCheck) && !CheckDoublonCellInArrayCell(GetCol(col), cellToCheck) && !CheckDoublonCellInArrayCell(GetSubGrid(row, col), cellToCheck);
+
+            //return true;
             return !CheckDoublonCellInArrayCell(GetRow(row), cellToCheck) && !CheckDoublonCellInArrayCell(GetCol(col), cellToCheck) && !CheckDoublonCellInArrayCell(GetSubGrid(row, col), cellToCheck);
+
         }
 
         public bool CheckDoublonCellInArrayCell(Cell[] arrayCell, Cell cell)

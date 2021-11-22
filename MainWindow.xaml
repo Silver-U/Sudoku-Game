@@ -4,53 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sudoku_Games"
+        xmlns:userControl ="clr-namespace:Sudoku_Games.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1024" Width="1024">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2.5*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.075*"/>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.025*"/>
+            <RowDefinition Height="0.15*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBlock>FOU</TextBlock>
 
         <Grid Grid.Row="1" Background="Chocolate" >
-            <StackPanel Background ="Red" VerticalAlignment="Center">
-                <Grid Height="40"  VerticalAlignment="Center" >
-                    <StackPanel Background ="Yellow" Orientation="Horizontal" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Button Height="15" Width="15"></Button>
-                        <Button Height="15" Width="15"></Button>
-                        <Button Height="15" Width="15"></Button>
-                        <Button Height="15" Width="15"></Button>
-                        <Button Height="15" Width="15"></Button>
-                        <Button Height="15" Width="15"></Button>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
+            <userControl:ButtonView />
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Background="Chocolate">
+            <Border Height="120" Width="120">
+                <userControl:ColorPicker/>
+            </Border>
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid>
-                <StackPanel>
-                    <Button Height="30" Width="80"></Button>
-                    <Button Height="30" Width="80"></Button>
-                    <Button Height="30" Width="80"></Button>
-                    <Button Height="30" Width="80"></Button>
-                    <Button Height="30" Width="80"></Button>
-                    <Button Height="30" Width="80"></Button>
-                </StackPanel>
+                <userControl:FeaturesView/>
             </Grid>
         </Grid>
         
         <Grid Grid.Row="2" Grid.Column="0" x:Name="GameArea">
-
+            <userControl:GridView/>
         </Grid>
     </Grid>
 </Window>

@@ -11,7 +11,7 @@ namespace Sudoku_Games.Model
         private int value;
         private bool editable = true;
         private Color colorValue = Color.ffffff;
-        private HashSet<int> potentialValues;
+        private HashSet<int> potentialValues = new HashSet<int>();
 
         public Cell()
         {
@@ -63,7 +63,7 @@ namespace Sudoku_Games.Model
             colorValue = this.colorValue = (Color)Enum.Parse(typeof(Color), color);
         }
 
-        public void getValue(int value)
+        public void setValue(int value)
         {
             this.value = value;
         }
