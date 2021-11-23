@@ -70,9 +70,6 @@ namespace Sudoku_Games.Model
             return Enumerable.Range(0, cote).Select(x => grid[row, x]).ToArray();
         }
 
-
-
-
         public Cell[] GetCol(int col)
         {
             return Enumerable.Range(0, cote).Select(x => grid[x, col]).ToArray();
@@ -85,9 +82,9 @@ namespace Sudoku_Games.Model
 
             IList<Cell> subGrid = new List<Cell>();
 
-            for(int i = rowSubGrid; i < (rowSubGrid + 1) * 3; i++)
+            for(int i = rowSubGrid * 3; i < (rowSubGrid + 1) * 3; i++)
             {
-                for (int j = colSubGrid; j < (colSubGrid + 1) * 3; j++)
+                for (int j = colSubGrid * 3; j < (colSubGrid + 1) * 3; j++)
                 {
                     subGrid.Add(GetCell(i, j));
                 }
@@ -100,11 +97,15 @@ namespace Sudoku_Games.Model
         {
             Cell cellToCheck = GetCell(row, col);
 
-            //if(cellToCheck.getValue() != 0)
-            //    return !CheckDoublonCellInArrayCell(GetRow(row), cellToCheck) && !CheckDoublonCellInArrayCell(GetCol(col), cellToCheck) && !CheckDoublonCellInArrayCell(GetSubGrid(row, col), cellToCheck);
+            bool subgrid = CheckDoublonCellInArrayCell(GetSubGrid(row, col), cellToCheck);
+            bool _row = CheckDoublonCellInArrayCell(GetRow(row), cellToCheck);
+            bool _col = CheckDoublonCellInArrayCell(GetCol(col), cellToCheck);
 
-            //return true;
-            return !CheckDoublonCellInArrayCell(GetRow(row), cellToCheck) && !CheckDoublonCellInArrayCell(GetCol(col), cellToCheck) && !CheckDoublonCellInArrayCell(GetSubGrid(row, col), cellToCheck);
+            if (cellToCheck.getValue() != 0)
+                return !_row && !_col && !subgrid;
+
+            return true;
+            //return !CheckDoublonCellInArrayCell(GetRow(row), cellToCheck) && !CheckDoublonCellInArrayCell(GetCol(col), cellToCheck) && !CheckDoublonCellInArrayCell(GetSubGrid(row, col), cellToCheck);
 
         }
 

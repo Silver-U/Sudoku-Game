@@ -21,7 +21,6 @@
         </Grid.RowDefinitions>
 
         <TextBlock>FOU</TextBlock>
-
         <Grid Grid.Row="1" Background="Chocolate" >
             <userControl:ButtonView />
         </Grid>

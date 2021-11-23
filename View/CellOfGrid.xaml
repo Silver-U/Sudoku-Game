@@ -34,7 +34,7 @@
         </Style>
     </UserControl.Resources>
     <Grid >
-        <Border x:Name="cellBorder" Style="{StaticResource cellBorder}">
+        <Border x:Name="cellBorder" Style="{StaticResource cellBorder}" BorderThickness="2 2 2 2" BorderBrush="Black">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -62,3 +62,4 @@
         </Border>
     </Grid>
 </UserControl>
+

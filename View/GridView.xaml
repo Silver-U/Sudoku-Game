@@ -30,95 +30,104 @@
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
-        <local:CellOfGrid x:Name = "cell00" Grid.Row="0" Grid.Column="0" KeyDown="cell00_KeyUp" MouseDown="cell00_MouseDown_1"/>
-        <local:CellOfGrid x:Name = "cell01" Grid.Row="0" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell02" Grid.Row="0" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell03" Grid.Row="0" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell04" Grid.Row="0" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell05" Grid.Row="0" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell06" Grid.Row="0" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell07" Grid.Row="0" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell08" Grid.Row="0" Grid.Column="8" />
+        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="0" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="3" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="6" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="0" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="3" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <Border Grid.Column="6" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
+        <local:CellOfGrid x:Name = "cell00" Grid.Row="0" Grid.Column="0" KeyDown="cell00_KeyUp" />
+        <local:CellOfGrid x:Name = "cell01" Grid.Row="0" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell02" Grid.Row="0" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell03" Grid.Row="0" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell04" Grid.Row="0" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell05" Grid.Row="0" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell06" Grid.Row="0" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell07" Grid.Row="0" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell08" Grid.Row="0" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell10" Grid.Row="1" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell11" Grid.Row="1" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell12" Grid.Row="1" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell13" Grid.Row="1" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell14" Grid.Row="1" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell15" Grid.Row="1" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell16" Grid.Row="1" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell17" Grid.Row="1" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell18" Grid.Row="1" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell10" Grid.Row="1" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell11" Grid.Row="1" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell12" Grid.Row="1" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell13" Grid.Row="1" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell14" Grid.Row="1" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell15" Grid.Row="1" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell16" Grid.Row="1" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell17" Grid.Row="1" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell18" Grid.Row="1" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell20" Grid.Row="2" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell21" Grid.Row="2" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell22" Grid.Row="2" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell23" Grid.Row="2" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell24" Grid.Row="2" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell25" Grid.Row="2" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell26" Grid.Row="2" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell27" Grid.Row="2" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell28" Grid.Row="2" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell20" Grid.Row="2" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell21" Grid.Row="2" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell22" Grid.Row="2" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell23" Grid.Row="2" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell24" Grid.Row="2" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell25" Grid.Row="2" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell26" Grid.Row="2" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell27" Grid.Row="2" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell28" Grid.Row="2" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell30" Grid.Row="3" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell31" Grid.Row="3" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell32" Grid.Row="3" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell33" Grid.Row="3" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell34" Grid.Row="3" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell35" Grid.Row="3" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell36" Grid.Row="3" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell37" Grid.Row="3" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell38" Grid.Row="3" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell30" Grid.Row="3" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell31" Grid.Row="3" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell32" Grid.Row="3" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell33" Grid.Row="3" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell34" Grid.Row="3" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell35" Grid.Row="3" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell36" Grid.Row="3" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell37" Grid.Row="3" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell38" Grid.Row="3" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell40" Grid.Row="4" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell41" Grid.Row="4" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell42" Grid.Row="4" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell43" Grid.Row="4" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell44" Grid.Row="4" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell45" Grid.Row="4" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell46" Grid.Row="4" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell47" Grid.Row="4" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell48" Grid.Row="4" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell40" Grid.Row="4" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell41" Grid.Row="4" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell42" Grid.Row="4" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell43" Grid.Row="4" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell44" Grid.Row="4" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell45" Grid.Row="4" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell46" Grid.Row="4" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell47" Grid.Row="4" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell48" Grid.Row="4" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell50" Grid.Row="5" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell51" Grid.Row="5" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell52" Grid.Row="5" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell53" Grid.Row="5" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell54" Grid.Row="5" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell55" Grid.Row="5" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell56" Grid.Row="5" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell57" Grid.Row="5" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell58" Grid.Row="5" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell50" Grid.Row="5" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell51" Grid.Row="5" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell52" Grid.Row="5" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell53" Grid.Row="5" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell54" Grid.Row="5" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell55" Grid.Row="5" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell56" Grid.Row="5" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell57" Grid.Row="5" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell58" Grid.Row="5" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell60" Grid.Row="6" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell61" Grid.Row="6" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell62" Grid.Row="6" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell63" Grid.Row="6" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell64" Grid.Row="6" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell65" Grid.Row="6" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell66" Grid.Row="6" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell67" Grid.Row="6" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell68" Grid.Row="6" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell60" Grid.Row="6" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell61" Grid.Row="6" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell62" Grid.Row="6" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell63" Grid.Row="6" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell64" Grid.Row="6" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell65" Grid.Row="6" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell66" Grid.Row="6" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell67" Grid.Row="6" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell68" Grid.Row="6" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell70" Grid.Row="7" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell71" Grid.Row="7" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell72" Grid.Row="7" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell73" Grid.Row="7" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell74" Grid.Row="7" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell75" Grid.Row="7" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell76" Grid.Row="7" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell77" Grid.Row="7" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell78" Grid.Row="7" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell70" Grid.Row="7" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell71" Grid.Row="7" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell72" Grid.Row="7" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell73" Grid.Row="7" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell74" Grid.Row="7" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell75" Grid.Row="7" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell76" Grid.Row="7" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell77" Grid.Row="7" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell78" Grid.Row="7" Grid.Column="8" KeyDown="cell00_KeyUp"/>
                                                                          
-        <local:CellOfGrid x:Name = "cell80" Grid.Row="8" Grid.Column="0" />
-        <local:CellOfGrid x:Name = "cell81" Grid.Row="8" Grid.Column="1" />
-        <local:CellOfGrid x:Name = "cell82" Grid.Row="8" Grid.Column="2" />
-        <local:CellOfGrid x:Name = "cell83" Grid.Row="8" Grid.Column="3" />
-        <local:CellOfGrid x:Name = "cell84" Grid.Row="8" Grid.Column="4" />
-        <local:CellOfGrid x:Name = "cell85" Grid.Row="8" Grid.Column="5" />
-        <local:CellOfGrid x:Name = "cell86" Grid.Row="8" Grid.Column="6" />
-        <local:CellOfGrid x:Name = "cell87" Grid.Row="8" Grid.Column="7" />
-        <local:CellOfGrid x:Name = "cell88" Grid.Row="8" Grid.Column="8" />
+        <local:CellOfGrid x:Name = "cell80" Grid.Row="8" Grid.Column="0" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell81" Grid.Row="8" Grid.Column="1" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell82" Grid.Row="8" Grid.Column="2" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell83" Grid.Row="8" Grid.Column="3" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell84" Grid.Row="8" Grid.Column="4" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell85" Grid.Row="8" Grid.Column="5" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell86" Grid.Row="8" Grid.Column="6" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell87" Grid.Row="8" Grid.Column="7" KeyDown="cell00_KeyUp"/>
+        <local:CellOfGrid x:Name = "cell88" Grid.Row="8" Grid.Column="8" KeyDown="cell00_KeyUp"/>
 
 
 

@@ -24,8 +24,8 @@ namespace Sudoku_Games.View
         private Cell cell;
         private TextBlock[] textblockSync;
         private TextBox cellValues;
-        private bool ValueMode = ButtonView.getInsertValueMode();
-        private bool pnMode = true;
+        public bool ValueMode = ButtonView.getInsertValueMode();
+        private bool pnMode = false;
 
 
         public CellOfGrid()
@@ -171,6 +171,12 @@ namespace Sudoku_Games.View
         {
             cellValues.IsEnabled = false;
         }
+
+        //public static void TurnOnValueMode()
+        //{
+        //    ValueMode = true;
+        //    pnMode = false;
+        //}
 
         public String getNameTextBox()
         {

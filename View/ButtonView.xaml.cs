@@ -20,7 +20,7 @@ namespace Sudoku_Games.View
     /// </summary>
     public partial class ButtonView : UserControl
     {
-        public bool insertValueMode = true;
+        public static bool insertValueMode = true;
         private bool insertPNMode = false;
         private bool insertColorMode = false;
         private bool selectionMode = false;
@@ -69,6 +69,11 @@ namespace Sudoku_Games.View
             insertPNMode = false;
             insertColorMode = false;
             selectionMode = true;
+        }
+
+        public static bool getInsertValueMode()
+        {
+            return insertValueMode;
         }
 
 

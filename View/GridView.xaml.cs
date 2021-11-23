@@ -25,6 +25,7 @@ namespace Sudoku_Games.View
         public CellOfGrid[,] cellsofGrid = new CellOfGrid[cote, cote];
         public Board board;
         IList<TextBox> selectedTextBox = new List<TextBox>();
+        bool selectMode = false;
         public GridView()
         {
             InitializeComponent();
@@ -168,19 +169,49 @@ namespace Sudoku_Games.View
             //int col = Grid.GetColumn(cell);
             if (e.Key != Key.NumPad0)
             {
-                cell00.CellValue.Text = e.Key.ToString().Last().ToString();
-                if (!board.CheckIfCellValide(0, 0))
+                (e.Source as CellOfGrid).CellValue.Text = e.Key.ToString().Last().ToString();
+                (e.Source as CellOfGrid).setCellValue(e.Key.ToString().Last().ToString());
+                for (int i = 0; i < cote; i++)
                 {
-                    //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-                    cell00.Background = Brushes.BlueViolet;
-                    //MessageBox.Show(e.Source.ToString());
-                    ////MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-                }
-                else
-                {
-                    cell00.Background = Brushes.DarkBlue;
+                    for (int j = 0; j < cote; j++)
+                    {
+                        //if ((e.Source as CellOfGrid) == cellsofGrid[i, j])
+                        //{
+
+
+                            //string lengthName = cellOfGrid.Name;
+                            if (!board.CheckIfCellValide(i, j))
+                            {
+                                //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
+                                cellsofGrid[i, j].Background = Brushes.BlueViolet;
+                                //MessageBox.Show(e.Source.ToString());
+                                ////MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
+                            }
+    
+
+                        //}
+                    }
+
                 }
             }
+
+            //{ }
+            //TextBox textBlock = (e.Source as CellOfGrid).CellValue;
+            //if (e.Key != Key.NumPad0)
+            //{
+            //    cell00.CellValue.Text = e.Key.ToString().Last().ToString();
+            //    if (!board.CheckIfCellValide(0, 0))
+            //    {
+            //        //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
+            //        cell00.Background = Brushes.BlueViolet;
+            //        //MessageBox.Show(e.Source.ToString());
+            //        ////MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
+            //    }
+            //    else
+            //    {
+            //        cell00.Background = Brushes.DarkBlue;
+            //    }
+            //}
         }
 
         private void cell00_KeyDown(object sender, KeyEventArgs e)
@@ -204,9 +235,18 @@ namespace Sudoku_Games.View
 
 
 
-        private void cell00_MouseDown_1(object sender, MouseButtonEventArgs e)
+        private void cell00_MouseDown_1(object sender, MouseButtonEventArgs e, KeyEventArgs key)
         {
-            selectedTextBox.Add(e.Source as TextBox);
+            if (key.Key == Key.LeftCtrl || key.Key == Key.RightCtrl)
+            {
+                //var value = ValueForSelectMode(e);
+                //    foreach (TextBox textBox in selectedTextBox)
+                //    {
+                //        textBox.Text = value;
+                //    }
+
+                //    selectedTextBox = new List<TextBox>();
+            }
         }
     }
 }
