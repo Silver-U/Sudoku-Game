@@ -13,19 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Sudoku_Games.Model;
+using Sudoku_Games.ViewModels;
 
 namespace Sudoku_Games.View
 {
     /// <summary>
     /// Interaction logic for Cell.xaml
     /// </summary>
+    /// 
     public partial class CellOfGrid : UserControl
     {
+        /// <summary>
+        /// Question pour le prof, comment faire pour que delete soit considerer si curseur derriere chiffre
+        /// </summary>
         private Cell cell;
         private TextBlock[] textblockSync;
-        private TextBox cellValues;
-        public bool ValueMode = ButtonView.getInsertValueMode();
-        private bool pnMode = false;
+        private TextBox cellValue;
+        private bool ValueMode ;
+        private bool pnMode ;
+        private bool colorMode ;
+        private bool selectMode ;
+        private string color;
 
 
         public CellOfGrid()
@@ -33,9 +41,10 @@ namespace Sudoku_Games.View
             InitializeComponent();
             cell = new Cell();
             textblockSync = initNoteSync();
-            cellValues = CellValue;
+            cellValue = CellValue;
             //TurnOfPNModeCell();
             //TurnOfPNModeLine();
+            TurnOnValueMode();
 
         }
 
@@ -65,15 +74,20 @@ namespace Sudoku_Games.View
 
         public void Editable()
         {
-            if(!cell.getEditable())
+            if (!cell.getEditable())
             {
-                cellValues.IsReadOnly = true;
+                cellValue.IsReadOnly = true;
             }
         }
 
         public Cell GetCell()
         {
             return cell;
+        }
+
+        public void SetCell(Cell cell)
+        {
+            this.cell = cell;
         }
         public string getCellValue()
         {
@@ -82,8 +96,7 @@ namespace Sudoku_Games.View
 
         public void setCellValue(string value)
         {
-            //CellValue.Text = value;
-            if(value.Equals(""))
+            if (value.Equals(""))
             {
                 cell.setValue(0);
             }
@@ -91,7 +104,18 @@ namespace Sudoku_Games.View
             {
                 cell.setValue(int.Parse(value));
             }
-            
+        }
+
+        public void setCellValueTxtBx(string value)
+        {
+            if (value.Equals("0"))
+            {
+                cellValue.Text = "";
+            }
+            else
+            {
+                cellValue.Text = value;
+            }
         }
 
         public String getPNString()
@@ -104,13 +128,13 @@ namespace Sudoku_Games.View
             return cell.getPotentialValue();
         }
 
-        public void addPN(String pn)
+        private void addPN(String pn)
         {
-            for(int i = 1; i < textblockSync.Length; i++)
+            for (int i = 1; i < textblockSync.Length - 1; i++)
             {
-                if(textblockSync[i].Text.Equals("") || textblockSync[i].Text.Equals("0"))
-                {                   
-                    if(!cell.getPotentialValue().Contains(int.Parse(pn)))
+                if (textblockSync[i].Text.Equals("") || textblockSync[i].Text.Equals("0"))
+                {
+                    if (!cell.getPotentialValue().Contains(int.Parse(pn)))
                     {
                         textblockSync[i].Text = pn;
                         cell.AddPotentialValue(int.Parse(pn));
@@ -120,63 +144,90 @@ namespace Sudoku_Games.View
             }
         }
 
-        public void Clear()
+        public void FillPnWithCellPN(Cell cell)
         {
+            int j = 0;
+            int i = 1;
+            var TempPnHS = cell.getPotentialValue().ToList();
+            while (j < TempPnHS.Count || i < textblockSync.Length - 1)
+            {
+                textblockSync[i].Text = "" + TempPnHS[j];
+                i++;
+                j++;
+            }        
+        }
+
+        private void Clear()
+        {
+            ChangeBackgroundColor("ffffff");
             foreach (TextBlock textBlock in textblockSync)
                 textBlock.Text = "";
-            cellValues.Text = "";
+            cellValue.Text = "";
             cell = new Cell();
+        }
+
+        private void ClearPn()
+        {
+            cell.ClearPotentialValue();
+            foreach (TextBlock textBlock in textblockSync)
+                textBlock.Text = "";
         }
 
         private void CellValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(cellValues == null)
+            if (cellValue == null)
             {
-                
+
             }
             else
             {
-                //if (textBoxSync == null)
-                //{
-                //    textBoxSync = InitTextBoxSync();
-                //}
                 if (ValueMode)
                 {
-                    //TurnOfPNModeCell();
+                    if (cell.HasPn())
+                        ClearPn();
                     setCellValue(CellValue.Text);
                     HideCellValue0();
                 }
+
                 if (pnMode)
                 {
-                    CellValue.Text = "";                    
-                    // TurnOfValueMode();
+                    CellValue.Text = "";
                 }
             }
         }
 
-        private void TurnOfPNModeCell()
+        public void TurnOnPNMode()
         {
-            for (int i = 1; i < textblockSync.Length; i++)
-            {
-                textblockSync[i].IsEnabled = false;
-            }
+            ValueMode = false;
+            pnMode = true;
+            colorMode = false;
+            selectMode = false;
         }
 
-        private void TurnOfPNModeLine()
+        public void TurnOnColorMode()
         {
-            textblockSync[0].IsEnabled = false;
+            ValueMode = false;
+            pnMode = false;
+            colorMode = true;
+            selectMode = false;
         }
 
-        private void TurnOfValueMode()
+        public void TurnOnValueMode()
         {
-            cellValues.IsEnabled = false;
+            ValueMode = true;
+            pnMode = false;
+            colorMode = false;
+            selectMode = false;
         }
 
-        //public static void TurnOnValueMode()
-        //{
-        //    ValueMode = true;
-        //    pnMode = false;
-        //}
+        public void TurnOnSelectMode()
+        {
+            ValueMode = false;
+            pnMode = false;
+            colorMode = false;
+            selectMode = true;
+        }
+
 
         public String getNameTextBox()
         {
@@ -186,20 +237,57 @@ namespace Sudoku_Games.View
 
         private void CellValue_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.A)
+            if (e.Key == Key.A)
             {
                 Clear();
-                MessageBox.Show("delete");
             }
             else
             {
                 if (pnMode)
                 {
-                    //MessageBox.Show("yo");
-                    addPN(e.Key.ToString().Last().ToString());
-                    //CellValue.Visibility = Visibility.Visible;
+                    if(CellValue.Text.Equals(""))
+                        addPN(e.Key.ToString().Last().ToString());
                 }
             }
         }
+
+        public void setColor(string color)
+        {
+            this.color = color;
+        }
+
+        public void ChangeBackgroundColor(string color)
+        {
+            if(color.Equals("ffffff"))
+            {
+                cellBorder.Background = Brushes.Transparent;
+            }
+            else
+            {
+                cellBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#" + color));
+            }
+
+            cell.setColorValue(color);
+        }
+
+        private void CellValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (colorMode)
+                ChangeBackgroundColor(color);
+
+            if (selectMode)
+            {
+                //GridOfCells.getVmGameArea().AddCellToSelection(this);
+                ViewModel_GameArea.AddCellToSelection(this);
+            }
+
+            //if (ek.Key == Key.Back || ek.Key == Key.Delete)
+            //{
+            //    Clear();
+            //    //MessageBox.Show("delete");
+            //}
+        }
+        //if (colorMode)
+        //        ChangeBackgroundColor(color);
     }
 }

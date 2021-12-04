@@ -56,10 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GameController.cs" />
-    <Compile Include="GameGrid.xaml.cs">
-      <DependentUpon>GameGrid.xaml</DependentUpon>
-    </Compile>
     <Compile Include="IGameController.cs" />
+    <Compile Include="ViewModels\ViewModel_GameArea.cs" />
+    <Compile Include="ViewModels\ViewModel_MainPage.cs" />
     <Compile Include="View\ButtonView.xaml.cs">
       <DependentUpon>ButtonView.xaml</DependentUpon>
     </Compile>
@@ -72,16 +71,12 @@
     <Compile Include="View\FeaturesView.xaml.cs">
       <DependentUpon>FeaturesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GridView.xaml.cs">
-      <DependentUpon>GridView.xaml</DependentUpon>
+    <Compile Include="View\GridOfCells.xaml.cs">
+      <DependentUpon>GridOfCells.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="GameGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,7 +106,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GridView.xaml">
+    <Page Include="View\GridOfCells.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Cell.cs" />
-    <Compile Include="Model\Color.cs" />
+    <Compile Include="Model\Colors.cs" />
     <Compile Include="Model\Board.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

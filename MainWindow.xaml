@@ -22,23 +22,57 @@
 
         <TextBlock>FOU</TextBlock>
         <Grid Grid.Row="1" Background="Chocolate" >
-            <userControl:ButtonView />
+            <StackPanel Background ="Yellow" Orientation="Horizontal">
+                <Button x:Name="undo" Height="75" Width="75" Margin="30 0 30 0" Click="undo_Click"></Button>
+                <Button x:Name="redo" Height="75" Width="75" Margin="30 0 30 0" Click="redo_Click"></Button>
+                <Button x:Name="finalValue" Height="75" Width="75" Margin="30 0 30 0" Click="finalValue_Click"></Button>
+                <Button x:Name="mayValue" Height="75" Width="75" Margin="30 0 30 0" Click="mayValue_Click"></Button>
+                <Button x:Name="color" Height="75" Width="75" Margin="30 0 30 0" Click="color_Click"/>
+                <Button x:Name="selection" Height="75" Width="75" Margin="30 0 0 0" Click="selection_Click"/>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Background="Chocolate">
-            <Border Height="120" Width="120">
-                <userControl:ColorPicker/>
+            <Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" x:Name="color0" Grid.Column="0" Background="#c6ff1a" Click="color0_Click"/>
+                    <Button Grid.Row="0" x:Name="color1" Grid.Column="1" Background="#ffff33" Click="color1_Click"/>
+                    <Button Grid.Row="0" x:Name="color2" Grid.Column="2" Background="#ff1a75" Click="color2_Click"/>
+                    <Button Grid.Row="1" x:Name="color3" Grid.Column="0" Background="#ff1a1a" Click="color3_Click"/>
+                    <Button Grid.Row="1" x:Name="color4" Grid.Column="1" Background="#cc6666" Click="color4_Click"/>
+                    <Button Grid.Row="1" x:Name="color5" Grid.Column="2" Background="#ff1aff" Click="color5_Click"/>
+                    <Button Grid.Row="2" x:Name="color6" Grid.Column="0" Background="#ff8c1a" Click="color6_Click"/>
+                    <Button Grid.Row="2" x:Name="color7" Grid.Column="1" Background="#ffb31a" Click="color7_Click"/>
+                    <Button Grid.Row="2" x:Name="color8" Grid.Column="2" Background="#ffffff" Click="color8_Click"/>
+
+                </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid>
-                <userControl:FeaturesView/>
+                <StackPanel>
+                    <Button x:Name="newGame" Height="50" Width="200" Margin="0 50 0 25" Click="newGame_Click" />
+                    <Button x:Name="saveGame" Height="50" Width="200" Margin="0 25 0 25"/>
+                    <Button x:Name="loadGame" Height="50" Width="200" Margin="0 25 0 25"/>
+                    <Button x:Name="reset" Height="50" Width="200" Margin="0 25 0 25"/>
+                </StackPanel>
             </Grid>
         </Grid>
         
-        <Grid Grid.Row="2" Grid.Column="0" x:Name="GameArea">
-            <userControl:GridView/>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <userControl:GridOfCells x:Name="GameArea"/>
         </Grid>
     </Grid>
 </Window>

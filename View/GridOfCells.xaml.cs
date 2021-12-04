@@ -1,4 +1,5 @@
 ﻿using Sudoku_Games.Model;
+using Sudoku_Games.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +20,20 @@ namespace Sudoku_Games.View
     /// <summary>
     /// Interaction logic for GridView.xaml
     /// </summary>
-    public partial class GridView : UserControl
+    public partial class GridOfCells : UserControl
     {
         private const int cote = 9;
         public CellOfGrid[,] cellsofGrid = new CellOfGrid[cote, cote];
-        public Board board;
-        IList<TextBox> selectedTextBox = new List<TextBox>();
-        bool selectMode = false;
-        public GridView()
+        private Board board;
+        private  ViewModel_GameArea vmGameArea;
+
+        public GridOfCells()
         {
             InitializeComponent();
             board = new Board();
             BindingGridCells();
             BindingGridCellsToBoard();
+            vmGameArea = new ViewModel_GameArea(this);
         }
 
         private void BindingGridCells()
@@ -127,6 +129,10 @@ namespace Sudoku_Games.View
             cellsofGrid[8, 8] = cell88;
         }
 
+        public ViewModel_GameArea GetVmGameArea()
+        {
+            return vmGameArea;
+        }
         private void BindingGridCellsToBoard()
         {
             for(int i  = 0; i < cote; i++)
@@ -150,103 +156,64 @@ namespace Sudoku_Games.View
 
         private void cell00_KeyUp(object sender, KeyEventArgs e)
         {
-            //if(!board.CheckIfCellValide(0, 0))
-            //{
-            //    //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-            //    cell00.Background = Brushes.BlueViolet;
-            //}
-
-            ////MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-
-
-
-            //TextBox cell = (TextBox)(e.Source as UIElement);
-            //string test = cell.Name.ToString();
-            ////int row = int.Parse(tempCellTextbox.Name[-1]);
-            //int row = (int)(test[-2] - '0');
-            //int col = (int)(test[-1] - '0');
-            //int row = ce;
-            //int col = Grid.GetColumn(cell);
-            if (e.Key != Key.NumPad0)
+            bool test = vmGameArea.getValueMode();
+            if (test)
             {
-                (e.Source as CellOfGrid).CellValue.Text = e.Key.ToString().Last().ToString();
-                (e.Source as CellOfGrid).setCellValue(e.Key.ToString().Last().ToString());
+                if (e.Key != Key.NumPad0 && e.Key != Key.A)
+                {
+                    (e.Source as CellOfGrid).CellValue.Text = e.Key.ToString().Last().ToString();
+                    (e.Source as CellOfGrid).setCellValue(e.Key.ToString().Last().ToString());
+                    for (int i = 0; i < cote; i++)
+                    {
+                        for (int j = 0; j < cote; j++)
+                        {
+                            if (!board.CheckIfCellValide(i, j))
+                            {
+                                cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
+                            }
+                            else
+                            {
+                                cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+            if(vmGameArea.getSelectMode())
+            {
+                vmGameArea.UpdateValueOfSelectedCells(e.Key.ToString().Last().ToString());
                 for (int i = 0; i < cote; i++)
                 {
                     for (int j = 0; j < cote; j++)
                     {
-                        //if ((e.Source as CellOfGrid) == cellsofGrid[i, j])
-                        //{
+                        if (!board.CheckIfCellValide(i, j))
+                        {
+                            cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
+                        }
+                        else
+                        {
+                            cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
+                        }
 
-
-                            //string lengthName = cellOfGrid.Name;
-                            if (!board.CheckIfCellValide(i, j))
-                            {
-                                //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-                                cellsofGrid[i, j].Background = Brushes.BlueViolet;
-                                //MessageBox.Show(e.Source.ToString());
-                                ////MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-                            }
-    
-
-                        //}
                     }
 
                 }
             }
 
-            //{ }
-            //TextBox textBlock = (e.Source as CellOfGrid).CellValue;
-            //if (e.Key != Key.NumPad0)
-            //{
-            //    cell00.CellValue.Text = e.Key.ToString().Last().ToString();
-            //    if (!board.CheckIfCellValide(0, 0))
-            //    {
-            //        //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-            //        cell00.Background = Brushes.BlueViolet;
-            //        //MessageBox.Show(e.Source.ToString());
-            //        ////MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-            //    }
-            //    else
-            //    {
-            //        cell00.Background = Brushes.DarkBlue;
-            //    }
-            //}
         }
-
-        private void cell00_KeyDown(object sender, KeyEventArgs e)
-        {           
-            if(e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
-            {
-                var value = ValueForSelectMode(e);
-                foreach(TextBox textBox in selectedTextBox)
-                {
-                    textBox.Text = value;
-                }
-
-                selectedTextBox = new List<TextBox>();
-            }
-        }
-
-        private string ValueForSelectMode(KeyEventArgs keyEventArgs)
+        public ViewModel_GameArea getVmGameArea()
         {
-            return keyEventArgs.Key.ToString();
+            return vmGameArea;
         }
-
-
-
-        private void cell00_MouseDown_1(object sender, MouseButtonEventArgs e, KeyEventArgs key)
+        public CellOfGrid[,] GetCellOfGrids()
         {
-            if (key.Key == Key.LeftCtrl || key.Key == Key.RightCtrl)
-            {
-                //var value = ValueForSelectMode(e);
-                //    foreach (TextBox textBox in selectedTextBox)
-                //    {
-                //        textBox.Text = value;
-                //    }
-
-                //    selectedTextBox = new List<TextBox>();
-            }
+            return cellsofGrid;
         }
+        
     }
+
+    
 }

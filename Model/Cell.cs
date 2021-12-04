@@ -10,7 +10,7 @@ namespace Sudoku_Games.Model
     {
         private int value;
         private bool editable = true;
-        private Color colorValue = Color.ffffff;
+        private Colors colorValue = Colors.ffffff;
         private HashSet<int> potentialValues = new HashSet<int>();
 
         public Cell()
@@ -31,7 +31,7 @@ namespace Sudoku_Games.Model
             if (value == 0)
                 editable = false;
 
-            this.colorValue = (Color)Enum.Parse(typeof(Color), colorValue);
+            this.colorValue = (Colors)Enum.Parse(typeof(Colors), colorValue);
             this.value = value;
         }
 
@@ -53,6 +53,11 @@ namespace Sudoku_Games.Model
         {
             return potentialValues;
         }
+
+        public bool HasPn()
+        {
+            return !(potentialValues.Count() == 0 || potentialValues == null);
+        }
         public string getColorValue()
         {
             return colorValue.ToString();
@@ -60,7 +65,7 @@ namespace Sudoku_Games.Model
 
         public void setColorValue(string color)
         {
-            colorValue = this.colorValue = (Color)Enum.Parse(typeof(Color), color);
+            colorValue = this.colorValue = (Colors)Enum.Parse(typeof(Colors), color);
         }
 
         public void setValue(int value)

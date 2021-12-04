@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku_Games.Model
 {
-    public enum Color
+    public enum Colors
     {
         c6ff1a,
         ffff33,
