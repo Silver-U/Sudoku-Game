@@ -23,17 +23,18 @@ namespace Sudoku_Games.View
     public partial class GridOfCells : UserControl
     {
         private const int cote = 9;
-        public CellOfGrid[,] cellsofGrid = new CellOfGrid[cote, cote];
+        private CellOfGrid[,] cellsofGrid = new CellOfGrid[cote, cote];
         private Board board;
         private  ViewModel_GameArea vmGameArea;
 
         public GridOfCells()
         {
             InitializeComponent();
-            board = new Board();
             BindingGridCells();
-            BindingGridCellsToBoard();
             vmGameArea = new ViewModel_GameArea(this);
+            board = vmGameArea.GetBoard();          
+            BindingGridCellsToBoard();
+            
         }
 
         private void BindingGridCells()
@@ -133,6 +134,11 @@ namespace Sudoku_Games.View
         {
             return vmGameArea;
         }
+
+        public void setBoard(Board board)
+        {
+            this.board = board;
+        }
         private void BindingGridCellsToBoard()
         {
             for(int i  = 0; i < cote; i++)
@@ -173,7 +179,8 @@ namespace Sudoku_Games.View
                             }
                             else
                             {
-                                cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
+                                if (cellsofGrid[i, j].GetCell().getColorValue().Equals("ffffff"))
+                                    cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
                             }
 
                         }
@@ -195,7 +202,8 @@ namespace Sudoku_Games.View
                         }
                         else
                         {
-                            cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
+                            if (cellsofGrid[i, j].GetCell().getColorValue().Equals("ffffff"))
+                                cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
                         }
 
                     }
@@ -211,8 +219,7 @@ namespace Sudoku_Games.View
         public CellOfGrid[,] GetCellOfGrids()
         {
             return cellsofGrid;
-        }
-        
+        }        
     }
 
     

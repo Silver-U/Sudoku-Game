@@ -26,7 +26,7 @@ namespace Sudoku_Games
         private Board board = new Board();
         private const int cote = 9;
         //public Grid gameAreaGrid = new Grid();
-        private ViewModel_MainPage vmMainPage;
+        private static ViewModel_MainPage vmMainPage;
         //private ViewModel_GameArea vmGameArea;
 
 
@@ -45,6 +45,10 @@ namespace Sudoku_Games
             //gameAreaGrid.Children.
         }
 
+        public static void setMP(ViewModel_MainPage viewModel_MainPage)
+        {
+            vmMainPage = viewModel_MainPage;
+        }
         private void color_Click(object sender, RoutedEventArgs e)
         {
             //ViewModel_MainPage.DisableTextboxes();
@@ -127,7 +131,7 @@ namespace Sudoku_Games
         private void newGame_Click(object sender, RoutedEventArgs e)
         {
             vmMainPage.LoadBoard(new Board());
-            MessageBox.Show("youpi");
+            //MessageBox.Show("youpi");
         }
     }
 }

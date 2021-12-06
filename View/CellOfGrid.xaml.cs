@@ -157,13 +157,20 @@ namespace Sudoku_Games.View
             }        
         }
 
-        private void Clear()
-        {
-            ChangeBackgroundColor("ffffff");
-            foreach (TextBlock textBlock in textblockSync)
-                textBlock.Text = "";
+        public void Clear()
+        {            
+            ClearPn();
             cellValue.Text = "";
+            ChangeBackgroundColor("ffffff");
             cell = new Cell();
+        }
+
+        public void Clear(Cell cell)
+        {
+            ClearPn();
+            cellValue.Text = "";
+            ChangeBackgroundColor("ffffff");
+            this.cell = cell;
         }
 
         private void ClearPn()
@@ -270,6 +277,18 @@ namespace Sudoku_Games.View
             cell.setColorValue(color);
         }
 
+        public void SimpleChangeBackgroundColor(string color)
+        {
+            if (color.Equals("ffffff"))
+            {
+                cellBorder.Background = Brushes.Transparent;
+            }
+            else
+            {
+                cellBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#" + color));
+            }
+        }
+
         private void CellValue_GotFocus(object sender, RoutedEventArgs e)
         {
             if (colorMode)
@@ -286,6 +305,24 @@ namespace Sudoku_Games.View
             //    Clear();
             //    //MessageBox.Show("delete");
             //}
+        }
+
+        public void FillMeWithCell(Cell cell)
+        {
+            Clear(cell);
+            if(this.cell.getValue() != 0)
+            {
+                setCellValueTxtBx("" + this.cell.getValue());
+            }
+            else
+            {
+                if(this.cell.HasPn())
+                {
+                    FillPnWithCellPN(this.cell);
+                }
+            }
+
+            SimpleChangeBackgroundColor(this.cell.getColorValue());
         }
         //if (colorMode)
         //        ChangeBackgroundColor(color);

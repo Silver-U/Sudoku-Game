@@ -22,6 +22,7 @@ namespace Sudoku_Games.ViewModels
 
         public ViewModel_GameArea(GridOfCells gridOfCells)
         {
+            board = new Board();
             gameArea = gridOfCells;
             TurnOnVAlueMode();
             //        ValueMode = true;
@@ -53,6 +54,10 @@ namespace Sudoku_Games.ViewModels
         public static void AddCellToSelection(CellOfGrid cellOfGrid)
         {
             selectedCells.Add(cellOfGrid);
+        }
+        public Board GetBoard()
+        {
+            return board;
         }
         
         public CellOfGrid[,] GetCellOfGrids()
@@ -149,6 +154,21 @@ namespace Sudoku_Games.ViewModels
             foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
             {
                 cellOfGrid.setColor(color);
+            }
+        }
+
+        public void LoadBoard(Board board)
+        {
+            this.board = board;
+            gameArea.setBoard(board);
+            var temp = gameArea.GetCellOfGrids();
+
+            for (int i = 0; i < cote; i++)
+            {
+                for (int j = 0; j < cote; j++)
+                {
+                    temp[i, j].FillMeWithCell(this.board.getGrid()[i, j]);
+                }
             }
         }
     }

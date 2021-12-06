@@ -53,28 +53,33 @@ namespace Sudoku_Games.ViewModels
 
         public void LoadBoard(Board board)
         {
-            ViewModel_GameArea test = new ViewModel_GameArea(new GridOfCells());
-            var temp = test.GetCellOfGrids();
-            CellOfGrid tempCoG;
-            Cell tempCell;
-            for (int i = 0; i < cote; i++)
-            {
-                for (int j = 0; j < cote; j++)
-                {
-                    tempCoG = temp[i, j];
-                    tempCell = board.getGrid()[i, j];
+            vmGameArea.LoadBoard(board);
+            ////ViewModel_GameArea test = new ViewModel_GameArea(new GridOfCells());
+            //var temp = vmGameArea.GetCellOfGrids();
+            ////CellOfGrid tempCoG;
+            ////Cell tempCell;
+            ////vmGameArea = new ViewModel_GameArea(new GridOfCells());
+            //for (int i = 0; i < cote; i++)
+            //{
+            //    for (int j = 0; j < cote; j++)
+            //    {
+            //        temp[i, j].FillMeWithCell(board.getGrid()[i, j]);
+            //        //vmGameArea = new ViewModel_GameArea(new GridOfCells());
+            //        //tempCoG = vmGameArea.GetCellOfGrids()[i, j];
+            //        //tempCoG.Clear();
+            //        //tempCell = board.getGrid()[i, j];
 
-                    tempCoG.SetCell(tempCell);
-                    tempCoG.setCellValueTxtBx("" + tempCell.getValue());
-                    if(tempCell.HasPn() && tempCell.getValue() == 0)
-                        tempCoG.FillPnWithCellPN(tempCell);
+            //        //tempCoG.SetCell(tempCell);
+            //        //tempCoG.setCellValueTxtBx("" + tempCell.getValue());
+            //        //if(tempCell.HasPn() && tempCell.getValue() == 0)
+            //        //    tempCoG.FillPnWithCellPN(tempCell);
 
-                    tempCoG.ChangeBackgroundColor(tempCell.getColorValue());
+            //        //tempCoG.ChangeBackgroundColor(tempCell.getColorValue());
 
-                }
-            }
-
-            vmGameArea = test;
+            //    }
+            //}
+            ////MainWindow.setMP(this);
+            ////vmGameArea = test;
         }
 
         //public void DisableTextboxes()
