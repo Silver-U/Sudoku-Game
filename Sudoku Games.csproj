@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Features\CommandInvoker.cs" />
+    <Compile Include="Features\ICommandUR.cs" />
+    <Compile Include="Features\UndoCommand.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="IGameController.cs" />
     <Compile Include="ViewModels\ViewModel_GameArea.cs" />

@@ -26,6 +26,23 @@ namespace Sudoku_Games.ViewModels
             vmGameArea = gridOfCells.getVmGameArea();
         }
 
+        public bool getValueMode()
+        {
+            return vmGameArea.getValueMode();
+        }
+        public bool getPnMode()
+        {
+            return vmGameArea.getPnMode();
+        }
+        public bool getColorMode()
+        {
+            return vmGameArea.getColorMode();
+        }
+        public bool getSelectMode()
+        {
+            return vmGameArea.getSelectMode();
+        }
+
         public void TurnOnVAlueMode()
         {
             vmGameArea.TurnOnVAlueMode();
@@ -49,6 +66,11 @@ namespace Sudoku_Games.ViewModels
         public void ShareBackgroundColorToAllCell(string color)
         {
             vmGameArea.ShareBackgroundColorToAllCell(color);
+        }
+
+        public void ColorSelectedCell(String color)
+        {
+            vmGameArea.ColorSelectedCell(color);
         }
 
         public void LoadBoard(Board board)
@@ -82,13 +104,6 @@ namespace Sudoku_Games.ViewModels
             ////vmGameArea = test;
         }
 
-        //public void DisableTextboxes()
-        //{
-        //    foreach (CellOfGrid cellOfGrid in gameArea_UserControl.GetCellOfGrids())
-        //    {
-        //        cellOfGrid.CellValue.IsEnabled = false;
-        //    }
-        //}
 
     }
 

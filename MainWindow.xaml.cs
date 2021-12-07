@@ -50,7 +50,7 @@ namespace Sudoku_Games
             vmMainPage = viewModel_MainPage;
         }
         private void color_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             //ViewModel_MainPage.DisableTextboxes();
             vmMainPage.TurnOnColorMode();
             //vmMainPage.TurnOnColorMode();
@@ -85,47 +85,111 @@ namespace Sudoku_Games
 
         private void color0_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("c6ff1a");
+            if(vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("c6ff1a");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("c6ff1a");
+            }
         } 
         
         private void color1_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ffff33");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ffff33");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ffff33");
+            }
         }
 
         private void color2_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ff1a75");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ff1a75");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ff1a75");
+            }
         }
 
         private void color3_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ff1a1a");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ff1a1a");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ff1a1a");
+            }
         }
 
         private void color4_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("cc6666");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("cc6666");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("cc6666");
+            }
         }
 
         private void color5_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ff1aff");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ff1aff");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ff1aff");
+            }
         }
 
         private void color6_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ff8c1a");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ff8c1a");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ff8c1a");
+
+            }
         }
 
         private void color7_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ffb31a");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ffb31a");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ffb31a");
+            }
         }
 
         private void color8_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.ShareBackgroundColorToAllCell("ffffff");
+            if (vmMainPage.getSelectMode())
+            {
+                vmMainPage.ColorSelectedCell("ffffff");
+            }
+            else
+            {
+                vmMainPage.ShareBackgroundColorToAllCell("ffffff");
+            }
         }
 
         private void newGame_Click(object sender, RoutedEventArgs e)

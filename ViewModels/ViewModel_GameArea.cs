@@ -14,7 +14,7 @@ namespace Sudoku_Games.ViewModels
         private GridOfCells gameArea;
         private Board board;
         private const int cote = 9;
-        private static IList<CellOfGrid> selectedCells = new List<CellOfGrid>();
+        private static IList<CellOfGrid> selectedCells;
         private bool ValueMode;
         private bool pnMode;
         private bool colorMode;
@@ -23,6 +23,7 @@ namespace Sudoku_Games.ViewModels
         public ViewModel_GameArea(GridOfCells gridOfCells)
         {
             board = new Board();
+            selectedCells = new List<CellOfGrid>();
             gameArea = gridOfCells;
             TurnOnVAlueMode();
             //        ValueMode = true;
@@ -155,6 +156,15 @@ namespace Sudoku_Games.ViewModels
             {
                 cellOfGrid.setColor(color);
             }
+        }
+
+        public void ColorSelectedCell(String color)
+        {
+            foreach (CellOfGrid cellOfGrid in selectedCells)
+            {
+                cellOfGrid.ChangeBackgroundColor(color);
+            }
+            selectedCells = new List<CellOfGrid>();
         }
 
         public void LoadBoard(Board board)
