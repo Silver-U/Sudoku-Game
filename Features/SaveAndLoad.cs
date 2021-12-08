@@ -11,45 +11,23 @@ namespace Sudoku_Games.Features
     public class SaveAndLoad
     {
         private const int cote = 9;
-
-        public void SaveGame(Board grid)
-        {
-            string filename = "";
-            String directory = "GamesState" + filename;
-            Cell[,] cells = grid.getGrid();
+        static string  directory = "save1.txt";
+        public static void SaveGame(Board board)
+        {       
             try
             {
                 if(File.Exists(directory))
                 {
                     File.Delete(directory);
                 }
-
+                //(StreamWriter saveFile = File.CreateText(directory) new StreamWriter(directory)
                 using (StreamWriter saveFile = File.CreateText(directory))
                 {
-                    string ligneToWrite = "";
+                    IList<string> boardString = BoardToString(board);
 
-                    for(int i = 0; i < cote; i++)
+                    foreach (string s in boardString)
                     {
-                        for (int j = 0; j < cote; j++)
-                        {
-                            ligneToWrite += cells[i, j].getValue() + " ";
-                            saveFile.WriteLine(ligneToWrite);
-                        }
-
-                        ligneToWrite = "";
-                    }
-
-                    saveFile.WriteLine("#Color");
-
-                    for (int i = 0; i < cote; i++)
-                    {
-                        for (int j = 0; j < cote; j++)
-                        {
-                            ligneToWrite += cells[i, j].getColorValue() + " ";
-                            saveFile.WriteLine(ligneToWrite);
-                        }
-
-                        ligneToWrite = "";
+                        saveFile.WriteLine(s);
                     }
                 }
             }
@@ -59,45 +37,65 @@ namespace Sudoku_Games.Features
             }
         }
 
-        public Board LoadGame(string fileName)
+        private static IList<string> BoardToString(Board board)
         {
-            String directory = "GamesState" + fileName;
-            Board grid = new Board();
-            string[] lines = File.ReadAllLines(directory);
-            IList<string> valuesCells = new List<string>();
-            IList<string> colorsCells = new List<string>();
-            string[] ligneCells;
-            string[] ligneColors;
-            bool dontSkip = true;
-
-            foreach (string line in lines)
+            IList<string> boardString = new List<string>();
+            foreach(Cell cell in board.getGrid())
             {
-                if (line == "#Color")
-                    dontSkip = false;
-
-                if(dontSkip)
-                {
-                    valuesCells.Add(line);
-                }
-                else
-                {
-                    colorsCells.Add(line);
-                }
+                boardString.Add(CelltoString(cell));
             }
 
-            for(int i = 0; i < cote; i++)
-            {
-                ligneCells = valuesCells[i].Split();
-                ligneColors = colorsCells[i].Split();
+            return boardString;
+        }
 
+        private static string CelltoString(Cell cell)
+        {
+            return cell.getValue().ToString() + "#" + cell.getColorValue() + "#" + cell.PnToString() + "#" + cell.getEditable().ToString();
+        }
+        public static void LoadGame()
+        {
+            Board board = Board.Instance();
+            string[] lines = File.ReadAllLines(directory);
+
+            board.setGrid(StringsToCells(lines));
+        }
+
+        private static Cell[,] StringsToCells(string[] s)
+        {
+            Cell[,] cells = Board.InitialiseEmptyGrid();
+
+            for (int i = 0; i < cote; i++)
+            {
                 for (int j = 0; j < cote; j++)
                 {
-                    grid.SeTCell(i, j, new Cell(int.Parse(ligneCells[j]), ligneColors[j]));
+                    cells[i, j] = StringToCell(s[(cote * i) + j]);
                 }
             }
 
-            return grid;
+            return cells;
+        }
 
+        private static Cell StringToCell(string s)
+        {
+            var cellElements = s.Split('#');
+            int value = int.Parse(cellElements[0]);
+            string color = cellElements[1];
+            bool editable = bool.Parse(cellElements[3]);
+
+            return new Cell(value, color, StringToHashset(cellElements[2]), editable);
+            
+        }
+
+        private static HashSet<int> StringToHashset(string s)
+        {
+            if (s.Equals(" "))
+                return null;
+            HashSet<int> temphs = new HashSet<int>();
+            foreach (char c in s)
+            {
+                temphs.Add(int.Parse(c.ToString()));
+            }
+            return temphs;
         }
     }
 }

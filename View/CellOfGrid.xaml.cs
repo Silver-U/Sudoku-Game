@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sudoku_Games.Features;
 using Sudoku_Games.Model;
 using Sudoku_Games.ViewModels;
 
@@ -34,6 +35,7 @@ namespace Sudoku_Games.View
         private bool colorMode ;
         private bool selectMode ;
         private string color;
+        private CommandInvoker invoker = CommandInvoker.Instance;
 
 
         public CellOfGrid()
@@ -44,7 +46,7 @@ namespace Sudoku_Games.View
             cellValue = CellValue;
             //TurnOfPNModeCell();
             //TurnOfPNModeLine();
-            TurnOnValueMode();
+            //TurnOnValueMode();
 
         }
 
@@ -103,7 +105,10 @@ namespace Sudoku_Games.View
             else
             {
                 cell.setValue(int.Parse(value));
+                //Memento.Instance().SaveMemento();
             }
+            //invoker.Execute();
+
         }
 
         public void setCellValueTxtBx(string value)
@@ -149,7 +154,7 @@ namespace Sudoku_Games.View
             int j = 0;
             int i = 1;
             var TempPnHS = cell.getPotentialValue().ToList();
-            while (j < TempPnHS.Count || i < textblockSync.Length - 1)
+            while (j < TempPnHS.Count && i < textblockSync.Length - 1)
             {
                 textblockSync[i].Text = "" + TempPnHS[j];
                 i++;
@@ -165,12 +170,24 @@ namespace Sudoku_Games.View
             cell = new Cell();
         }
 
-        public void Clear(Cell cell)
+        public void ResetMe(Cell cellule)
+        {
+            var temp = cellule.getValue();
+            ClearPn();
+            cellValue.Text = "";
+            Console.WriteLine("boo");
+            SimpleChangeBackgroundColor("ffffff");
+            cellule.setValue(temp);
+            SetCell(cellule);
+
+            //cell = cellule;
+        }
+
+        public void ClearContent()
         {
             ClearPn();
             cellValue.Text = "";
             ChangeBackgroundColor("ffffff");
-            this.cell = cell;
         }
 
         private void ClearPn()
@@ -193,14 +210,15 @@ namespace Sudoku_Games.View
                     if (cell.HasPn())
                         ClearPn();
                     setCellValue(CellValue.Text);
-                    HideCellValue0();
+                    HideCellValue0();                   
                 }
-
                 if (pnMode)
                 {
                     CellValue.Text = "";
                 }
             }
+            invoker.Execute();
+
         }
 
         public void TurnOnPNMode()
@@ -236,7 +254,7 @@ namespace Sudoku_Games.View
         }
 
 
-        public String getNameTextBox()
+        public string getNameTextBox()
         {
             return CellValue.Name;
         }
@@ -253,8 +271,11 @@ namespace Sudoku_Games.View
                 if (pnMode)
                 {
                     if(CellValue.Text.Equals(""))
+                    {
                         addPN(e.Key.ToString().Last().ToString());
+                    }
                 }
+                //invoker.Execute();
             }
         }
 
@@ -292,7 +313,11 @@ namespace Sudoku_Games.View
         private void CellValue_GotFocus(object sender, RoutedEventArgs e)
         {
             if (colorMode)
+            {
                 ChangeBackgroundColor(color);
+                //invoker.Execute();
+            }
+                
 
             if (selectMode)
             {
@@ -307,22 +332,22 @@ namespace Sudoku_Games.View
             //}
         }
 
-        public void FillMeWithCell(Cell cell)
+        public void FillMeWithCell(Cell cellule)
         {
-            Clear(cell);
-            if(this.cell.getValue() != 0)
+            ResetMe(cellule);
+            if(cell.getValue() != 0)
             {
-                setCellValueTxtBx("" + this.cell.getValue());
+                setCellValueTxtBx("" + cell.getValue());
             }
             else
             {
-                if(this.cell.HasPn())
+                if(cell.HasPn())
                 {
-                    FillPnWithCellPN(this.cell);
+                    FillPnWithCellPN(cell);
                 }
             }
 
-            SimpleChangeBackgroundColor(this.cell.getColorValue());
+            SimpleChangeBackgroundColor(cell.getColorValue());
         }
         //if (colorMode)
         //        ChangeBackgroundColor(color);

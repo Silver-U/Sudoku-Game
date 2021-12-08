@@ -1,4 +1,5 @@
 ﻿using Sudoku_Games.Model;
+using Sudoku_Games.Features;
 using Sudoku_Games.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,15 +25,15 @@ namespace Sudoku_Games.View
     {
         private const int cote = 9;
         private CellOfGrid[,] cellsofGrid = new CellOfGrid[cote, cote];
-        private Board board;
         private  ViewModel_GameArea vmGameArea;
+        private CommandInvoker invoker = CommandInvoker.Instance;
+        
 
         public GridOfCells()
         {
             InitializeComponent();
             BindingGridCells();
-            vmGameArea = new ViewModel_GameArea(this);
-            board = vmGameArea.GetBoard();          
+            vmGameArea = new ViewModel_GameArea(this);         
             BindingGridCellsToBoard();
             
         }
@@ -135,29 +136,15 @@ namespace Sudoku_Games.View
             return vmGameArea;
         }
 
-        public void setBoard(Board board)
-        {
-            this.board = board;
-        }
         private void BindingGridCellsToBoard()
         {
             for(int i  = 0; i < cote; i++)
             {
                 for (int j = 0; j < cote; j++)
                 {
-                    board.SeTCell(i, j, cellsofGrid[i, j].GetCell());
+                    Board.Instance().SeTCell(i, j, cellsofGrid[i, j].GetCell());
                 }
             }           
-        }
-
-        private void cell00_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
-        }
-
-        private void cell00_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //MessageBox.Show("board[0,1]" + board.geTCellValue(0, 1));
         }
 
         private void cell00_KeyUp(object sender, KeyEventArgs e)
@@ -173,7 +160,7 @@ namespace Sudoku_Games.View
                     {
                         for (int j = 0; j < cote; j++)
                         {
-                            if (!board.CheckIfCellValide(i, j))
+                            if (!Board.Instance().CheckIfCellValide(i, j))
                             {
                                 cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
                             }
@@ -196,7 +183,7 @@ namespace Sudoku_Games.View
                 {
                     for (int j = 0; j < cote; j++)
                     {
-                        if (!board.CheckIfCellValide(i, j))
+                        if (!Board.Instance().CheckIfCellValide(i, j))
                         {
                             cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
                         }
@@ -210,7 +197,7 @@ namespace Sudoku_Games.View
 
                 }
             }
-
+            //invoker.Execute();
         }
         public ViewModel_GameArea getVmGameArea()
         {

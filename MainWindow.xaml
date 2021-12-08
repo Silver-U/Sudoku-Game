@@ -64,8 +64,8 @@
             <Grid>
                 <StackPanel>
                     <Button x:Name="newGame" Height="50" Width="200" Margin="0 50 0 25" Click="newGame_Click" />
-                    <Button x:Name="saveGame" Height="50" Width="200" Margin="0 25 0 25"/>
-                    <Button x:Name="loadGame" Height="50" Width="200" Margin="0 25 0 25"/>
+                    <Button x:Name="saveGame" Height="50" Width="200" Margin="0 25 0 25" Click="saveGame_Click"/>
+                    <Button x:Name="loadGame" Height="50" Width="200" Margin="0 25 0 25" Click="loadGame_Click"/>
                     <Button x:Name="reset" Height="50" Width="200" Margin="0 25 0 25"/>
                 </StackPanel>
             </Grid>

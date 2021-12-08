@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku_Games.Features
 {
-    interface ICommandUR
+    interface ICommand
     {
         void Execute();
     }

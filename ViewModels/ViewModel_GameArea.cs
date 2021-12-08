@@ -12,9 +12,9 @@ namespace Sudoku_Games.ViewModels
     public class ViewModel_GameArea
     {
         private GridOfCells gameArea;
-        private Board board;
         private const int cote = 9;
         private static IList<CellOfGrid> selectedCells;
+        private static bool drawingState;
         private bool ValueMode;
         private bool pnMode;
         private bool colorMode;
@@ -22,7 +22,7 @@ namespace Sudoku_Games.ViewModels
 
         public ViewModel_GameArea(GridOfCells gridOfCells)
         {
-            board = new Board();
+            drawingState = false;
             selectedCells = new List<CellOfGrid>();
             gameArea = gridOfCells;
             TurnOnVAlueMode();
@@ -55,10 +55,6 @@ namespace Sudoku_Games.ViewModels
         public static void AddCellToSelection(CellOfGrid cellOfGrid)
         {
             selectedCells.Add(cellOfGrid);
-        }
-        public Board GetBoard()
-        {
-            return board;
         }
         
         public CellOfGrid[,] GetCellOfGrids()
@@ -150,6 +146,11 @@ namespace Sudoku_Games.ViewModels
             return selectMode;
         }
 
+        public static bool getDrawingState()
+        {
+            return drawingState;
+        }
+
         public void ShareBackgroundColorToAllCell(string color)
         {
             foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
@@ -167,19 +168,23 @@ namespace Sudoku_Games.ViewModels
             selectedCells = new List<CellOfGrid>();
         }
 
-        public void LoadBoard(Board board)
+        public void DrawBoard()
         {
-            this.board = board;
-            gameArea.setBoard(board);
+            drawingState = true;
+            //Board.Instance().setGrid(cells);
+            //gameArea.setBoard(board);
             var temp = gameArea.GetCellOfGrids();
 
             for (int i = 0; i < cote; i++)
             {
                 for (int j = 0; j < cote; j++)
                 {
-                    temp[i, j].FillMeWithCell(this.board.getGrid()[i, j]);
+                    temp[i, j].FillMeWithCell(Board.Instance().getGrid()[i, j]);
                 }
             }
+
+            drawingState = false;
         }
+
     }
 }

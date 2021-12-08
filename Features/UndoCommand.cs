@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Sudoku_Games.Features
 {
-    public class UndoCommand : ICommandUR
+    public class UndoCommand : ICommand
     {
-        public void Redo()
+        public void Execute()
+        {
+            throw new NotImplementedException();
+        }
+            public void Redo()
         {
             throw new NotImplementedException();
         }

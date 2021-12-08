@@ -1,4 +1,5 @@
 ﻿using Sudoku_Games.Model;
+using Sudoku_Games.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,9 @@ namespace Sudoku_Games.Features
     sealed class CommandInvoker
     {
         private static CommandInvoker instance;
+        private const int cote = 9;
+        Board board = Board.Instance();
+
 
         public static CommandInvoker Instance
         {
@@ -22,27 +26,98 @@ namespace Sudoku_Games.Features
             }
         }
 
-        private Stack<Board> UndohistoryBoard = new Stack<Board>();
-        private Stack<Board> RedohistoryBoard = new Stack<Board>();
+        private Stack<Cell[,]> HistoryBoard = new Stack<Cell[,]>();
+        private Stack<Cell[,]> redohistoryBoard = new Stack<Cell[,]>();
 
-
-        private CommandInvoker() { }
-
-
-        public void Execute(ICommandUR command, Board board)
+        private CommandInvoker() 
         {
-            UndohistoryBoard.Push(board);
-            command.Execute();
+            HistoryBoard.Push(CopyWithoutReference(board.getGrid()));
+            //HistoryBoard.Pop();
+        }
+
+
+        public void Execute()
+        {
+            //Cell[,] cells = board.getGrid();
+            if(!ViewModel_GameArea.getDrawingState())
+                HistoryBoard.Push(CopyWithoutReference(board.getGrid()));
+            //HistoryBoard.Pop();
+
+            //undohistoryBoard.Push((Cell[,])board.getGrid().Clone());
+            //command.Execute();
+        }
+        public void Nothing()
+        {
+
         }
 
         public void Undo()
         {
-            RedohistoryBoard.Push(UndohistoryBoard.Pop()); 
+            if(HistoryBoard.Count == 1)
+            {
+                board.setGrid(HistoryBoard.Peek());
+            }
+
+            if (HistoryBoard.Count > 1)
+            {
+                redohistoryBoard.Push(CopyWithoutReference(HistoryBoard.Pop()));
+                board.setGrid(HistoryBoard.Peek());
+            }            
         }
 
         public void Redo()
         {
-            UndohistoryBoard.Push(RedohistoryBoard.Pop());
+            if(redohistoryBoard.Count != 0)
+            {
+                board.setGrid(redohistoryBoard.Peek());
+                HistoryBoard.Push(CopyWithoutReference(redohistoryBoard.Pop()));
+            }
+        }
+        
+        //public void Undo()
+        //{
+        //    //board.SeTCellValue(0, 0, 8);
+        //    if (undohistoryBoard.Count != 0)
+        //    {
+        //        Console.WriteLine(redohistoryBoard.Count + "    " + undohistoryBoard.Count);
+
+        //        redohistoryBoard.Push(board.getGrid());
+        //        board.setGrid(undohistoryBoard.Pop());
+
+        //        //return undohistoryBoard.Pop();
+        //    }
+        //    //return undohistoryBoard.Pop();
+        //    //redohistoryBoard.Push(board.getGrid());
+        //    //board.setGrid(undohistoryBoard.Pop());
+        //}
+
+        //public void Redo()
+        //{
+        //    Console.WriteLine(redohistoryBoard.Count + "    " + undohistoryBoard.Count);
+
+        //    if (redohistoryBoard.Count != 0)
+        //    {
+        //        var hy = undohistoryBoard.Peek() == redohistoryBoard.Peek();
+        //        Console.WriteLine(redohistoryBoard.Count + "    " + undohistoryBoard.Count);
+        //        undohistoryBoard.Push(board.getGrid());
+        //        board.setGrid(redohistoryBoard.Pop());
+        //    }
+
+        //}
+
+        private Cell[,] CopyWithoutReference(Cell[,] cells)
+        {
+            Cell[,] copy = new Cell[cote, cote];
+
+            for(int i = 0; i < cote; i++)
+            {
+                for (int j = 0; j < cote; j++)
+                {
+                    copy[i, j] = new Cell(cells[i, j]);
+                }
+            }
+
+            return copy;
         }
     }
 }

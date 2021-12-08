@@ -9,30 +9,48 @@ namespace Sudoku_Games.Model
     public class Cell
     {
         private int value;
-        private bool editable = true;
-        private Colors colorValue = Colors.ffffff;
-        private HashSet<int> potentialValues = new HashSet<int>();
+        private bool editable;
+        private Colors colorValue;
+        private HashSet<int> potentialValues;
 
         public Cell()
         {
             value = 0;
+            editable = true;
+            colorValue = Colors.ffffff;
+            potentialValues = new HashSet<int>();
         }
 
         public Cell(int value)
         {
-            if (value == 0)
-                editable = false;
-
             this.value = value;
+            editable = true;
+            colorValue = Colors.ffffff;
+            potentialValues = new HashSet<int>();
         }
 
         public Cell(int value, string colorValue)
         {
-            if (value == 0)
-                editable = false;
-
-            this.colorValue = (Colors)Enum.Parse(typeof(Colors), colorValue);
             this.value = value;
+            editable = true;
+            potentialValues = new HashSet<int>();
+            this.colorValue = (Colors)Enum.Parse(typeof(Colors), colorValue);
+        }
+
+        public Cell(Cell cell)
+        {
+            this.value = cell.getValue();
+            this.editable = cell.getEditable();
+            this.potentialValues = cell.getPotentialValue();
+            this.colorValue = (Colors)Enum.Parse(typeof(Colors), cell.getColorValue());
+        }
+
+        public Cell(int value, string colorValue, HashSet<int> potentialValues, bool editable)
+        {
+            this.value = value;
+            this.editable = editable;
+            this.potentialValues = potentialValues;
+            this.colorValue = (Colors)Enum.Parse(typeof(Colors), colorValue);
         }
 
         public override bool Equals(object obj)
@@ -82,6 +100,12 @@ namespace Sudoku_Games.Model
             potentialValues = new HashSet<int>();
         }
 
+        public string PnToString()
+        {
+            if (potentialValues == null)
+                return " ";
+            return string.Join("", potentialValues);
+        }
         public void AddPotentialValue(int pv)
         {
             potentialValues.Add(pv);

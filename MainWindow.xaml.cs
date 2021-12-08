@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Sudoku_Games.Model;
+using Sudoku_Games.Features;
 using Sudoku_Games.ViewModels;
 
 
@@ -23,19 +24,18 @@ namespace Sudoku_Games
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Board board = new Board();
         private const int cote = 9;
         //public Grid gameAreaGrid = new Grid();
         private static ViewModel_MainPage vmMainPage;
         //private ViewModel_GameArea vmGameArea;
+        private CommandInvoker invoker;
 
 
         public MainWindow()
         {
             InitializeComponent();
-
             //board.GetCell(0, 0).setValue(0);
-            
+            invoker = CommandInvoker.Instance;
             //GameController = new GameController(this, board);
             //vmGameArea = new ViewModel_GameArea(GameArea);
             vmMainPage = new ViewModel_MainPage(this, this.GameArea);
@@ -58,7 +58,20 @@ namespace Sudoku_Games
 
         private void undo_Click(object sender, RoutedEventArgs e)
         {
+            //invoker.Undo();
+            //invoker.Redo();
+            //var grid = Board.Instance().getGrid();
+            //Memento.Instance().SaveMemento();
+            //Board.Instance().setGrid(Memento.Instance().LoadMemento());
+            invoker.Undo();
+            vmMainPage.DrawBoard();
+            //invoker.Nothing();
+        }
 
+        private void redo_Click(object sender, RoutedEventArgs e)
+        {
+            invoker.Redo();
+            vmMainPage.DrawBoard();
         }
 
         private void finalValue_Click(object sender, RoutedEventArgs e)
@@ -77,10 +90,6 @@ namespace Sudoku_Games
         {
             vmMainPage.TurnOnSelectMode();
             //vmMainPage.TurnOnSelectMode();
-        }
-        private void redo_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void color0_Click(object sender, RoutedEventArgs e)
@@ -194,8 +203,18 @@ namespace Sudoku_Games
 
         private void newGame_Click(object sender, RoutedEventArgs e)
         {
-            vmMainPage.LoadBoard(new Board());
+            vmMainPage.NewGame();
             //MessageBox.Show("youpi");
+        }
+
+        private void saveGame_Click(object sender, RoutedEventArgs e)
+        {
+            vmMainPage.SaveBoard();
+        }
+
+        private void loadGame_Click(object sender, RoutedEventArgs e)
+        {
+            vmMainPage.LoadBoard();
         }
     }
 }

@@ -6,22 +6,30 @@ using System.Threading.Tasks;
 
 namespace Sudoku_Games.Model
 {
-    public class Board
+    public sealed class Board
     {
+        private static Board instance;
         private const int cote = 9;
         private Cell[,] grid;
 
-        public Board()
+        private Board()
         {
-            this.grid = InitialiseEmptyGrid();
+            grid = InitialiseEmptyGrid();
         }
 
-        public Board(Cell[,] cells)
+        //public Board(Cell[,] cells)
+        //{
+        //    grid = cells;
+        //}
+
+        public static Board Instance()
         {
-            grid = cells;
+            if (instance == null)
+                instance = new Board();
+            return instance;
         }
 
-        private Cell[,] InitialiseEmptyGrid()
+        public static Cell[,] InitialiseEmptyGrid()
         {
             Cell[,] cells = new Cell[cote, cote];
             for(int i = 0; i < cote; i++)

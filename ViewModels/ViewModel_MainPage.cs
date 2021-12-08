@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Sudoku_Games.Model;
+using Sudoku_Games.Features;
 using Sudoku_Games.View;
 
 namespace Sudoku_Games.ViewModels
@@ -16,6 +17,7 @@ namespace Sudoku_Games.ViewModels
         private const int cote = 9;
         //private GameGrid gameArea_UserControl;
         private ViewModel_GameArea vmGameArea;
+        //private CommandInvoker invoker = CommandInvoker.Instance;
         //private GridOfCells gameArea_UserControl ;
         //private IList<CellOfGrid> selectedCells = new List<CellOfGrid>();
 
@@ -73,9 +75,9 @@ namespace Sudoku_Games.ViewModels
             vmGameArea.ColorSelectedCell(color);
         }
 
-        public void LoadBoard(Board board)
+        public void DrawBoard()
         {
-            vmGameArea.LoadBoard(board);
+            vmGameArea.DrawBoard();
             ////ViewModel_GameArea test = new ViewModel_GameArea(new GridOfCells());
             //var temp = vmGameArea.GetCellOfGrids();
             ////CellOfGrid tempCoG;
@@ -102,6 +104,21 @@ namespace Sudoku_Games.ViewModels
             //}
             ////MainWindow.setMP(this);
             ////vmGameArea = test;
+        }
+
+        public void NewGame()
+        {
+            //DrawBoard(new C);
+        }
+        public void SaveBoard()
+        {
+            SaveAndLoad.SaveGame(Board.Instance());
+        }
+
+        public void LoadBoard()
+        {
+            SaveAndLoad.LoadGame();
+            DrawBoard();
         }
 
 

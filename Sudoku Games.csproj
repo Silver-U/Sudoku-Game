@@ -56,7 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Features\CommandInvoker.cs" />
-    <Compile Include="Features\ICommandUR.cs" />
+    <Compile Include="Features\JournaliseCommand.cs" />
+    <Compile Include="Features\ICommand.cs" />
+    <Compile Include="Features\Memento.cs" />
     <Compile Include="Features\UndoCommand.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="IGameController.cs" />
