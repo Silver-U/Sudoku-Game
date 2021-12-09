@@ -207,8 +207,8 @@ namespace Sudoku_Games
 
         private void newGame_Click(object sender, RoutedEventArgs e)
         {
+            Board.InitialiseEmptyGrid();
             vmMainPage.NewGame();
-            //MessageBox.Show("youpi");
         }
 
         private void saveGame_Click(object sender, RoutedEventArgs e)

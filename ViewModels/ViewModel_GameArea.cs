@@ -64,6 +64,7 @@ namespace Sudoku_Games.ViewModels
             foreach (CellOfGrid cellOfGrid in selectedCells)
             {
                 cellOfGrid.addPN(pn);
+                cellOfGrid.ClearBorder();
             }
             ClearSelection();
         }

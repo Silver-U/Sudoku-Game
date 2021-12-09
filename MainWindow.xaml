@@ -7,7 +7,7 @@
         xmlns:userControl ="clr-namespace:Sudoku_Games.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1024">
-    <Grid>
+    <Grid Background="AliceBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.5*"/>
             <ColumnDefinition/>
@@ -20,9 +20,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock>FOU</TextBlock>
-        <Grid Grid.Row="1" Background="Chocolate" >
-            <StackPanel Background ="Yellow" Orientation="Horizontal">
+        <Grid Grid.Row="1" Background="GhostWhite">
+            <StackPanel  Orientation="Horizontal">
                 <Button Content="Undo" x:Name="undo" Height="75" Width="75" Margin="30 0 30 0" Click="undo_Click"></Button>
                 <Button Content="Redo" x:Name="redo" Height="75" Width="75" Margin="30 0 30 0" Click="redo_Click"></Button>
                 <Button Content="Value Mode" x:Name="finalValue" Height="75" Width="75" Margin="30 0 30 0" Click="finalValue_Click"></Button>
@@ -34,7 +33,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Background="Chocolate">
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Background="GhostWhite">
             <Border>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -62,7 +61,7 @@
             </Border>
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1" Background="GhostWhite">
             <Grid>
                 <StackPanel>
                     <Button Content="New Game" x:Name="newGame" Height="50" Width="200" Margin="0 50 0 25" Click="newGame_Click" />
@@ -72,7 +71,7 @@
             </Grid>
         </Grid>
         
-        <Grid Grid.Row="2" Grid.Column="0">
+        <Grid Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <userControl:GridOfCells x:Name="GameArea"/>
         </Grid>
     </Grid>
