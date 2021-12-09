@@ -30,10 +30,13 @@ namespace Sudoku_Games.View
         private Cell cell;
         private TextBlock[] textblockSync;
         private TextBox cellValue;
+        private Border border;
         private bool ValueMode ;
         private bool pnMode ;
         private bool colorMode ;
         private bool selectMode ;
+        private bool selectModeForPN;
+        private bool displayChangePN = false;
         private string color;
         private CommandInvoker invoker = CommandInvoker.Instance;
 
@@ -44,9 +47,9 @@ namespace Sudoku_Games.View
             cell = new Cell();
             textblockSync = initNoteSync();
             cellValue = CellValue;
+            border = cellBorder;
 
         }
-
 
         public TextBlock[] initNoteSync()
         {
@@ -71,6 +74,36 @@ namespace Sudoku_Games.View
                 CellValue.Text = "";
         }
 
+        public void ChangeDisplaypn()
+        {
+            displayChangePN = !displayChangePN;
+            if (displayChangePN)
+            {
+                SimpleClearPnSquare();
+                string lignepn = "";
+                var TempPnHS = cell.getPotentialValue().ToList();
+                foreach (int i in TempPnHS)
+                {
+                    lignepn += "" + i;
+                }
+
+                ligneOfPn.Text = lignepn;
+            }
+            else
+            {
+                SimpleClearPnLigne();
+                int j = 0;
+                int i = 1;
+                var TempPnHS = cell.getPotentialValue().ToList();
+                while (j < TempPnHS.Count && i < textblockSync.Length)
+                {
+                    textblockSync[i].Text = "" + TempPnHS[j];
+                    i++;
+                    j++;
+                }
+            }
+           
+        }
         public void Editable()
         {
             if (!cell.getEditable())
@@ -128,21 +161,34 @@ namespace Sudoku_Games.View
             return cell.getPotentialValue();
         }
 
-        private void addPN(String pn)
+        public void addPN(String pn)
         {
-            for (int i = 1; i < textblockSync.Length - 1; i++)
+            if(displayChangePN)
             {
-                if (textblockSync[i].Text.Equals("") || textblockSync[i].Text.Equals("0"))
+                if (!cell.getPotentialValue().Contains(int.Parse(pn)))
                 {
-                    if (!cell.getPotentialValue().Contains(int.Parse(pn)))
-                    {
-                        textblockSync[i].Text = pn;
-                        cell.AddPotentialValue(int.Parse(pn));
+                    ligneOfPn.Text += pn;
+                    cell.AddPotentialValue(int.Parse(pn));
 
-                    }
-                    break;
                 }
             }
+            else
+            {
+                for (int i = 1; i < textblockSync.Length; i++)
+                {
+                    if (textblockSync[i].Text.Equals("") || textblockSync[i].Text.Equals("0"))
+                    {
+                        if (!cell.getPotentialValue().Contains(int.Parse(pn)))
+                        {
+                            textblockSync[i].Text = pn;
+                            cell.AddPotentialValue(int.Parse(pn));
+
+                        }
+                        break;
+                    }
+                }
+            }
+            
         }
 
         public void FillPnWithCellPN(Cell cell)
@@ -150,13 +196,27 @@ namespace Sudoku_Games.View
             int j = 0;
             int i = 1;
             var TempPnHS = cell.getPotentialValue().ToList();
-            while (j < TempPnHS.Count && i < textblockSync.Length - 1)
+            while (j < TempPnHS.Count && i < textblockSync.Length)
             {
                 textblockSync[i].Text = "" + TempPnHS[j];
                 i++;
                 j++;
             }        
         }
+
+        private void SimpleClearPnSquare()
+        {
+            for (int i = 1; i < textblockSync.Length; i++)
+            {
+                textblockSync[i].Text = "";
+            }
+        }
+
+        private void SimpleClearPnLigne()
+        {
+            ligneOfPn.Text = "";
+        }
+
 
         public void Clear()
         {            
@@ -225,6 +285,11 @@ namespace Sudoku_Games.View
                     {
                         CellValue.Text = "";
                     }
+
+                    if (selectModeForPN)
+                    {
+                        CellValue.Text = "";
+                    }
                 }
             }
         }
@@ -235,6 +300,7 @@ namespace Sudoku_Games.View
             pnMode = true;
             colorMode = false;
             selectMode = false;
+            selectModeForPN = false;
         }
 
         public void TurnOnColorMode()
@@ -242,6 +308,7 @@ namespace Sudoku_Games.View
             ValueMode = false;
             pnMode = false;
             colorMode = true;
+            selectModeForPN = false;
             selectMode = false;
         }
 
@@ -250,6 +317,7 @@ namespace Sudoku_Games.View
             ValueMode = true;
             pnMode = false;
             colorMode = false;
+            selectModeForPN = false;
             selectMode = false;
         }
 
@@ -257,8 +325,18 @@ namespace Sudoku_Games.View
         {
             ValueMode = false;
             pnMode = false;
+            selectModeForPN = false;
             colorMode = false;
             selectMode = true;
+        }
+
+        public void TurnOnSelectModeForPN()
+        {
+            ValueMode = false;
+            pnMode = false;
+            selectModeForPN = true;
+            colorMode = false;
+            selectMode = false;
         }
 
 
@@ -278,8 +356,12 @@ namespace Sudoku_Games.View
             {
                 if (pnMode)
                 {
-                    addPN(e.Key.ToString().Last().ToString());
-                    invoker.Execute();
+                    if(cellValue.Text.Equals(""))
+                    {
+                        addPN(e.Key.ToString().Last().ToString());
+                        invoker.Execute();
+                    }
+                    
                 }
             }
         }
@@ -324,13 +406,27 @@ namespace Sudoku_Games.View
             }
                 
 
-            if (selectMode)
+            if (selectMode || selectModeForPN)
             {
                 ViewModel_GameArea.AddCellToSelection(this);
             }
 
 
         }
+
+        public void ChangeBorder()
+        {
+            border.BorderThickness = new Thickness(4);
+            border.BorderBrush = Brushes.Wheat;
+        }
+
+        public void ClearBorder()
+        {
+            border.BorderThickness = new Thickness(0);
+            border.BorderBrush = Brushes.Transparent;
+        }
+
+
 
         public void FillMeWithCell(Cell cellule)
         {

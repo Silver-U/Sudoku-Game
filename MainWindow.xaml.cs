@@ -220,5 +220,15 @@ namespace Sudoku_Games
         {
             vmMainPage.LoadBoard();
         }
+
+        private void selectionForPN_Click(object sender, RoutedEventArgs e)
+        {
+            vmMainPage.TurnOnSelectModeForPN();
+        }
+
+        private void chpnd_Click(object sender, RoutedEventArgs e)
+        {
+            vmMainPage.ChangeDisplaypn();
+        }
     }
 }

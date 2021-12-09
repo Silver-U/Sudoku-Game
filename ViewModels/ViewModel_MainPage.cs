@@ -66,6 +66,16 @@ namespace Sudoku_Games.ViewModels
         {
             vmGameArea.TurnOnSelectMode();
         }
+        public void TurnOnSelectModeForPN()
+        {
+            vmGameArea.TurnOnSelectModeForPN();
+            
+        }
+
+        public void ChangeDisplaypn()
+        {
+            vmGameArea.ChangeDisplaypn();           
+        }
 
         public void ShareBackgroundColorToAllCell(string color)
         {
@@ -111,7 +121,8 @@ namespace Sudoku_Games.ViewModels
 
         public void NewGame()
         {
-            //DrawBoard(new C);
+            Board.InitialiseEmptyGrid();
+            DrawBoard();
         }
         public void SaveBoard()
         {

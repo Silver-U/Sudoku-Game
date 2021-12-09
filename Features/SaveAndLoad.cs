@@ -37,7 +37,7 @@ namespace Sudoku_Games.Features
             }
         }
 
-        private static IList<string> BoardToString(Board board)
+        public static IList<string> BoardToString(Board board)
         {
             IList<string> boardString = new List<string>();
             foreach(Cell cell in board.getGrid())

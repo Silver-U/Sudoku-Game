@@ -30,16 +30,7 @@
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="0" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="3" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="6" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="0" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="3" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <Border Grid.Column="6" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="10 10 10 10" BorderBrush="Crimson"/>
-        <local:CellOfGrid x:Name = "cell00" Grid.Row="0" Grid.Column="0" KeyDown="cell00_KeyUp" />
+        <local:CellOfGrid x:Name = "cell00" Grid.Row="0" Grid.Column="0" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell01" Grid.Row="0" Grid.Column="1" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell02" Grid.Row="0" Grid.Column="2" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell03" Grid.Row="0" Grid.Column="3" KeyDown="cell00_KeyUp"/>
@@ -48,7 +39,7 @@
         <local:CellOfGrid x:Name = "cell06" Grid.Row="0" Grid.Column="6" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell07" Grid.Row="0" Grid.Column="7" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell08" Grid.Row="0" Grid.Column="8" KeyDown="cell00_KeyUp"/>
-                                                                         
+                                                                                      
         <local:CellOfGrid x:Name = "cell10" Grid.Row="1" Grid.Column="0" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell11" Grid.Row="1" Grid.Column="1" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell12" Grid.Row="1" Grid.Column="2" KeyDown="cell00_KeyUp"/>
@@ -129,7 +120,15 @@
         <local:CellOfGrid x:Name = "cell87" Grid.Row="8" Grid.Column="7" KeyDown="cell00_KeyUp"/>
         <local:CellOfGrid x:Name = "cell88" Grid.Row="8" Grid.Column="8" KeyDown="cell00_KeyUp"/>
 
-
+        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="0" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="3" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="6" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="0" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="3" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
+        <Border Grid.Column="6" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Crimson"></Border>
 
     </Grid>
 </UserControl>

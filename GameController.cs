@@ -10,7 +10,7 @@ namespace Sudoku_Games
     public class GameController : IGameController
     {
         private MainWindow view;
-        public Board board;
+        public Board board = Board.Instance();
 
         public GameController(MainWindow view, Board board)
         {

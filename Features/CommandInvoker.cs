@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku_Games.Features
 {
-    sealed class CommandInvoker
+    public class CommandInvoker
     {
         private static CommandInvoker instance;
         private const int cote = 9;

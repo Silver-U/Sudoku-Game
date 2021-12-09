@@ -45,6 +45,14 @@ namespace Sudoku_Games.Model
             this.colorValue = (Colors)Enum.Parse(typeof(Colors), cell.getColorValue());
         }
 
+        public Cell(HashSet<int> hs)
+        {
+            value = 0;
+            editable = true;
+            colorValue = Colors.ffffff;
+            potentialValues = new HashSet<int>(hs);
+        }
+
 
         public Cell(int value, string colorValue, HashSet<int> potentialValues, bool editable)
         {

@@ -19,6 +19,8 @@ namespace Sudoku_Games.ViewModels
         private bool pnMode;
         private bool colorMode;
         private bool selectMode;
+        private bool selectModeForPN;
+
 
         public ViewModel_GameArea(GridOfCells gridOfCells)
         {
@@ -26,34 +28,13 @@ namespace Sudoku_Games.ViewModels
             selectedCells = new List<CellOfGrid>();
             gameArea = gridOfCells;
             TurnOnVAlueMode();
-            //        ValueMode = true;
-            //        pnMode = false;
-            //        selectMode = false;
-            //        colorMode = false;
         }
 
-        //public void ColorCellThatChangeValue()
-        //{
-        //    for (int i = 0; i < cote; i++)
-        //    {
-        //        for (int j = 0; j < cote; j++)
-        //        {
-        //            if (!board.CheckIfCellValide(i, j))
-        //            {
-        //                cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
-        //            }
-        //            else
-        //            {
-        //                cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
-        //            }
 
-        //        }
-
-        //    }
-        ////}
 
         public static void AddCellToSelection(CellOfGrid cellOfGrid)
         {
+            cellOfGrid.ChangeBorder();
             selectedCells.Add(cellOfGrid);
         }
         
@@ -73,6 +54,16 @@ namespace Sudoku_Games.ViewModels
             {
                 cellOfGrid.CellValue.Text = cellValue;
                 cellOfGrid.setCellValue(cellValue);
+                cellOfGrid.ClearBorder();
+            }
+            ClearSelection();
+        }
+
+        public void UpdatePnOfSelectedCells(string pn)
+        {
+            foreach (CellOfGrid cellOfGrid in selectedCells)
+            {
+                cellOfGrid.addPN(pn);
             }
             ClearSelection();
         }
@@ -85,6 +76,7 @@ namespace Sudoku_Games.ViewModels
         {
             ValueMode = true;
             pnMode = false;
+            selectModeForPN = false;
             selectMode = false;
             colorMode = false;
             foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
@@ -93,11 +85,20 @@ namespace Sudoku_Games.ViewModels
             }
         }
 
+        public void ChangeDisplaypn()
+        {
+            foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
+            {
+                cellOfGrid.ChangeDisplaypn();
+            }
+        }
+
         public void TurnOnColorMode()
         {
             ValueMode = false;
             pnMode = false;
             selectMode = false;
+            selectModeForPN = false;
             colorMode = true;
             foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
             {
@@ -110,6 +111,7 @@ namespace Sudoku_Games.ViewModels
             ValueMode = false;
             pnMode = true;
             selectMode = false;
+            selectModeForPN = false;
             colorMode = false;
             foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
             {
@@ -123,9 +125,23 @@ namespace Sudoku_Games.ViewModels
             pnMode = false;
             selectMode = true;
             colorMode = false;
+            selectModeForPN = false;
             foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
             {
                 cellOfGrid.TurnOnSelectMode();
+            }
+        }
+
+        public void TurnOnSelectModeForPN()
+        {
+            ValueMode = false;
+            pnMode = false;
+            selectMode = false;
+            colorMode = false;
+            selectModeForPN = true;
+            foreach (CellOfGrid cellOfGrid in gameArea.GetCellOfGrids())
+            {
+                cellOfGrid.TurnOnSelectModeForPN();
             }
         }
 
@@ -144,6 +160,11 @@ namespace Sudoku_Games.ViewModels
         public bool getSelectMode()
         {
             return selectMode;
+        }
+
+        public bool getselectModeForPN()
+        {
+            return selectModeForPN;
         }
 
         public static bool getDrawingState()
@@ -182,7 +203,7 @@ namespace Sudoku_Games.ViewModels
                     temp[i, j].FillMeWithCell(Board.Instance().getGrid()[i, j]);
                 }
             }
-
+            gameArea.CheckValue();
             drawingState = false;
         }
 

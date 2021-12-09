@@ -23,12 +23,14 @@
         <TextBlock>FOU</TextBlock>
         <Grid Grid.Row="1" Background="Chocolate" >
             <StackPanel Background ="Yellow" Orientation="Horizontal">
-                <Button x:Name="undo" Height="75" Width="75" Margin="30 0 30 0" Click="undo_Click"></Button>
-                <Button x:Name="redo" Height="75" Width="75" Margin="30 0 30 0" Click="redo_Click"></Button>
-                <Button x:Name="finalValue" Height="75" Width="75" Margin="30 0 30 0" Click="finalValue_Click"></Button>
-                <Button x:Name="mayValue" Height="75" Width="75" Margin="30 0 30 0" Click="mayValue_Click"></Button>
-                <Button x:Name="color" Height="75" Width="75" Margin="30 0 30 0" Click="color_Click"/>
-                <Button x:Name="selection" Height="75" Width="75" Margin="30 0 0 0" Click="selection_Click"/>
+                <Button Content="Undo" x:Name="undo" Height="75" Width="75" Margin="30 0 30 0" Click="undo_Click"></Button>
+                <Button Content="Redo" x:Name="redo" Height="75" Width="75" Margin="30 0 30 0" Click="redo_Click"></Button>
+                <Button Content="Value Mode" x:Name="finalValue" Height="75" Width="75" Margin="30 0 30 0" Click="finalValue_Click"></Button>
+                <Button Content="PN Mode" x:Name="mayValue" Height="75" Width="75" Margin="30 0 30 0" Click="mayValue_Click"></Button>
+                <Button Content="Color Mode" x:Name="color" Height="75" Width="75" Margin="30 0 30 0" Click="color_Click"/>
+                <Button Content="Selection Mode" x:Name="selection" Height="75" Width="95" Margin="30 0 30 0" Click="selection_Click"/>
+                <Button Content="SMFPN" x:Name="selectionForPN" Height="75" Width="75" Margin="30 0 30 0" Click="selectionForPN_Click"/>
+                <Button Content="Change PN Display" x:Name="chpnd" Height="75" Width="110" Margin="30 0 0 0" Click="chpnd_Click"/>
             </StackPanel>
         </Grid>
 
@@ -63,10 +65,9 @@
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid>
                 <StackPanel>
-                    <Button x:Name="newGame" Height="50" Width="200" Margin="0 50 0 25" Click="newGame_Click" />
-                    <Button x:Name="saveGame" Height="50" Width="200" Margin="0 25 0 25" Click="saveGame_Click"/>
-                    <Button x:Name="loadGame" Height="50" Width="200" Margin="0 25 0 25" Click="loadGame_Click"/>
-                    <Button x:Name="reset" Height="50" Width="200" Margin="0 25 0 25"/>
+                    <Button Content="New Game" x:Name="newGame" Height="50" Width="200" Margin="0 50 0 25" Click="newGame_Click" />
+                    <Button Content="Save Game" x:Name="saveGame" Height="50" Width="200" Margin="0 25 0 25" Click="saveGame_Click"/>
+                    <Button Content="Load Game" x:Name="loadGame" Height="50" Width="200" Margin="0 25 0 25" Click="loadGame_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

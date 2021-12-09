@@ -156,47 +156,23 @@ namespace Sudoku_Games.View
                 {
                     (e.Source as CellOfGrid).CellValue.Text = e.Key.ToString().Last().ToString();
                     (e.Source as CellOfGrid).setCellValue(e.Key.ToString().Last().ToString());
-                    for (int i = 0; i < cote; i++)
-                    {
-                        for (int j = 0; j < cote; j++)
-                        {
-                            if (!Board.Instance().CheckIfCellValide(i, j))
-                            {
-                                cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
-                            }
-                            else
-                            {
-                                if (cellsofGrid[i, j].GetCell().getColorValue().Equals("ffffff"))
-                                    cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
-                            }
+                    CheckValue();
 
-                        }
-
-                    }
                 }
             }
 
             if(vmGameArea.getSelectMode())
             {
                 vmGameArea.UpdateValueOfSelectedCells(e.Key.ToString().Last().ToString());
-                for (int i = 0; i < cote; i++)
-                {
-                    for (int j = 0; j < cote; j++)
-                    {
-                        if (!Board.Instance().CheckIfCellValide(i, j))
-                        {
-                            cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
-                        }
-                        else
-                        {
-                            if (cellsofGrid[i, j].GetCell().getColorValue().Equals("ffffff"))
-                                cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
-                        }
-
-                    }
-
-                }
+                CheckValue();
                 invoker.Execute();
+            }
+
+            if (vmGameArea.getselectModeForPN())
+            {
+                vmGameArea.UpdatePnOfSelectedCells(e.Key.ToString().Last().ToString());
+                invoker.Execute();
+
             }
         }
         public ViewModel_GameArea getVmGameArea()
@@ -206,7 +182,28 @@ namespace Sudoku_Games.View
         public CellOfGrid[,] GetCellOfGrids()
         {
             return cellsofGrid;
-        }        
+        }
+
+        public void CheckValue()
+        {
+            for (int i = 0; i < cote; i++)
+            {
+                for (int j = 0; j < cote; j++)
+                {
+                    if (!Board.Instance().CheckIfCellValide(i, j))
+                    {
+                        cellsofGrid[i, j].cellBorder.Background = Brushes.BlueViolet;
+                    }
+                    else
+                    {
+                        if (cellsofGrid[i, j].GetCell().getColorValue().Equals("ffffff"))
+                            cellsofGrid[i, j].cellBorder.Background = Brushes.Transparent;
+                    }
+
+                }
+
+            }
+        }
     }
 
     
