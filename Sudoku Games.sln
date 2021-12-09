@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku Games", "Sudoku Games.csproj", "{23A29B0E-D11F-4E3B-87F6-8C6C142F755A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Sudoku", "..\Test Sudoku\Test Sudoku.csproj", "{93FF9C5F-2EC5-47AD-AA6C-847F07633E30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Sudoku", "Test Sudoku\Test Sudoku.csproj", "{93FF9C5F-2EC5-47AD-AA6C-847F07633E30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
