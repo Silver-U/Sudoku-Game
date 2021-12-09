@@ -72,6 +72,10 @@ namespace Sudoku_Games
         {
             invoker.Redo();
             vmMainPage.DrawBoard();
+            //invoker.Redo();
+            //vmMainPage.DrawBoard();
+
+
         }
 
         private void finalValue_Click(object sender, RoutedEventArgs e)
@@ -173,7 +177,6 @@ namespace Sudoku_Games
             else
             {
                 vmMainPage.ShareBackgroundColorToAllCell("ff8c1a");
-
             }
         }
 
@@ -198,6 +201,7 @@ namespace Sudoku_Games
             else
             {
                 vmMainPage.ShareBackgroundColorToAllCell("ffffff");
+
             }
         }
 

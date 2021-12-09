@@ -17,6 +17,7 @@ namespace Sudoku_Games.ViewModels
         private const int cote = 9;
         //private GameGrid gameArea_UserControl;
         private ViewModel_GameArea vmGameArea;
+        private CommandInvoker invoker;
         //private CommandInvoker invoker = CommandInvoker.Instance;
         //private GridOfCells gameArea_UserControl ;
         //private IList<CellOfGrid> selectedCells = new List<CellOfGrid>();
@@ -26,6 +27,7 @@ namespace Sudoku_Games.ViewModels
             this.view = view;
 
             vmGameArea = gridOfCells.getVmGameArea();
+            invoker = CommandInvoker.Instance;
         }
 
         public bool getValueMode()
@@ -73,6 +75,7 @@ namespace Sudoku_Games.ViewModels
         public void ColorSelectedCell(String color)
         {
             vmGameArea.ColorSelectedCell(color);
+            invoker.Execute();
         }
 
         public void DrawBoard()

@@ -39,9 +39,13 @@ namespace Sudoku_Games.Features
         public void Execute()
         {
             //Cell[,] cells = board.getGrid();
-            if(!ViewModel_GameArea.getDrawingState())
+
+            //Console.WriteLine("pn board " + board.getGrid()[0, 0].getPotentialValue().ToString() + "    pn history " + HistoryBoard.Peek()[0, 0].getPotentialValue().ToString());
+            if (!ViewModel_GameArea.getDrawingState())
                 HistoryBoard.Push(CopyWithoutReference(board.getGrid()));
             //HistoryBoard.Pop();
+            Console.WriteLine("pn board " + board.getGrid()[0, 0].getPotentialValue().ToString() + "    pn history " + HistoryBoard.Peek()[0, 0].getPotentialValue().ToString());
+
 
             //undohistoryBoard.Push((Cell[,])board.getGrid().Clone());
             //command.Execute();
@@ -68,7 +72,7 @@ namespace Sudoku_Games.Features
         public void Redo()
         {
             if(redohistoryBoard.Count != 0)
-            {
+            {   
                 board.setGrid(redohistoryBoard.Peek());
                 HistoryBoard.Push(CopyWithoutReference(redohistoryBoard.Pop()));
             }
@@ -116,7 +120,6 @@ namespace Sudoku_Games.Features
                     copy[i, j] = new Cell(cells[i, j]);
                 }
             }
-
             return copy;
         }
     }

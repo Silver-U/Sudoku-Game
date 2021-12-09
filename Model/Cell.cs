@@ -41,15 +41,16 @@ namespace Sudoku_Games.Model
         {
             this.value = cell.getValue();
             this.editable = cell.getEditable();
-            this.potentialValues = cell.getPotentialValue();
+            this.potentialValues = new HashSet<int>(cell.getPotentialValue());
             this.colorValue = (Colors)Enum.Parse(typeof(Colors), cell.getColorValue());
         }
+
 
         public Cell(int value, string colorValue, HashSet<int> potentialValues, bool editable)
         {
             this.value = value;
             this.editable = editable;
-            this.potentialValues = potentialValues;
+            this.potentialValues = new HashSet<int>(potentialValues);
             this.colorValue = (Colors)Enum.Parse(typeof(Colors), colorValue);
         }
 

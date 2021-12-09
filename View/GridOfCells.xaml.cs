@@ -149,8 +149,8 @@ namespace Sudoku_Games.View
 
         private void cell00_KeyUp(object sender, KeyEventArgs e)
         {
-            bool test = vmGameArea.getValueMode();
-            if (test)
+            //bool test = vmGameArea.getValueMode();
+            if (vmGameArea.getValueMode())
             {
                 if (e.Key != Key.NumPad0 && e.Key != Key.A)
                 {
@@ -197,7 +197,6 @@ namespace Sudoku_Games.View
 
                 }
             }
-            //invoker.Execute();
         }
         public ViewModel_GameArea getVmGameArea()
         {

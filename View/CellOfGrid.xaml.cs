@@ -44,9 +44,6 @@ namespace Sudoku_Games.View
             cell = new Cell();
             textblockSync = initNoteSync();
             cellValue = CellValue;
-            //TurnOfPNModeCell();
-            //TurnOfPNModeLine();
-            //TurnOnValueMode();
 
         }
 
@@ -105,9 +102,7 @@ namespace Sudoku_Games.View
             else
             {
                 cell.setValue(int.Parse(value));
-                //Memento.Instance().SaveMemento();
             }
-            //invoker.Execute();
 
         }
 
@@ -210,15 +205,23 @@ namespace Sudoku_Games.View
                     if (cell.HasPn())
                         ClearPn();
                     setCellValue(CellValue.Text);
-                    HideCellValue0();                   
+                    HideCellValue0();
+                    invoker.Execute();
                 }
                 if (pnMode)
                 {
                     CellValue.Text = "";
                 }
-            }
-            invoker.Execute();
 
+                //if (selectMode)
+                //{
+                //    if (cell.HasPn())
+                //        ClearPn();
+                //    setCellValue(CellValue.Text);
+                //    HideCellValue0();
+                //    invoker.Execute();
+                //}
+            }
         }
 
         public void TurnOnPNMode()
@@ -270,12 +273,9 @@ namespace Sudoku_Games.View
             {
                 if (pnMode)
                 {
-                    if(CellValue.Text.Equals(""))
-                    {
-                        addPN(e.Key.ToString().Last().ToString());
-                    }
+                    addPN(e.Key.ToString().Last().ToString());
+                    invoker.Execute();
                 }
-                //invoker.Execute();
             }
         }
 
@@ -315,21 +315,16 @@ namespace Sudoku_Games.View
             if (colorMode)
             {
                 ChangeBackgroundColor(color);
-                //invoker.Execute();
+                invoker.Execute();
             }
                 
 
             if (selectMode)
             {
-                //GridOfCells.getVmGameArea().AddCellToSelection(this);
                 ViewModel_GameArea.AddCellToSelection(this);
             }
 
-            //if (ek.Key == Key.Back || ek.Key == Key.Delete)
-            //{
-            //    Clear();
-            //    //MessageBox.Show("delete");
-            //}
+
         }
 
         public void FillMeWithCell(Cell cellule)
