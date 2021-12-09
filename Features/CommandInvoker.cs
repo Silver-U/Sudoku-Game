@@ -65,6 +65,7 @@ namespace Sudoku_Games.Features
             if (HistoryBoard.Count > 1)
             {
                 redohistoryBoard.Push(CopyWithoutReference(HistoryBoard.Pop()));
+                //board.setGrid(CopyWithoutReference(HistoryBoard.Peek()));
                 board.setGrid(HistoryBoard.Peek());
             }            
         }
@@ -72,7 +73,8 @@ namespace Sudoku_Games.Features
         public void Redo()
         {
             if(redohistoryBoard.Count != 0)
-            {   
+            {
+                //board.setGrid(CopyWithoutReference(redohistoryBoard.Peek()));
                 board.setGrid(redohistoryBoard.Peek());
                 HistoryBoard.Push(CopyWithoutReference(redohistoryBoard.Pop()));
             }

@@ -196,6 +196,7 @@ namespace Sudoku_Games.View
                     }
 
                 }
+                invoker.Execute();
             }
         }
         public ViewModel_GameArea getVmGameArea()

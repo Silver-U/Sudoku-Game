@@ -138,6 +138,7 @@ namespace Sudoku_Games.View
                     {
                         textblockSync[i].Text = pn;
                         cell.AddPotentialValue(int.Parse(pn));
+
                     }
                     break;
                 }
@@ -168,11 +169,13 @@ namespace Sudoku_Games.View
         public void ResetMe(Cell cellule)
         {
             var temp = cellule.getValue();
+            var temp1 = cellule.getPotentialValue();
             ClearPn();
             cellValue.Text = "";
             Console.WriteLine("boo");
             SimpleChangeBackgroundColor("ffffff");
             cellule.setValue(temp);
+            cellule.setPotentialValue(temp1);
             SetCell(cellule);
 
             //cell = cellule;
@@ -192,35 +195,37 @@ namespace Sudoku_Games.View
                 textBlock.Text = "";
         }
 
+        private void ClearPn(HashSet<int> hs)
+        {           
+            foreach (TextBlock textBlock in textblockSync)
+                textBlock.Text = "";
+
+            cell.setPotentialValue(hs);
+        }
+
         private void CellValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (cellValue == null)
+            if(!ViewModel_GameArea.getDrawingState())
             {
-
-            }
-            else
-            {
-                if (ValueMode)
+                if (cellValue == null)
                 {
-                    if (cell.HasPn())
-                        ClearPn();
-                    setCellValue(CellValue.Text);
-                    HideCellValue0();
-                    invoker.Execute();
-                }
-                if (pnMode)
-                {
-                    CellValue.Text = "";
-                }
 
-                //if (selectMode)
-                //{
-                //    if (cell.HasPn())
-                //        ClearPn();
-                //    setCellValue(CellValue.Text);
-                //    HideCellValue0();
-                //    invoker.Execute();
-                //}
+                }
+                else
+                {
+                    if (ValueMode)
+                    {
+                        if (cell.HasPn())
+                            ClearPn();
+                        setCellValue(CellValue.Text);
+                        HideCellValue0();
+                        invoker.Execute();
+                    }
+                    if (pnMode)
+                    {
+                        CellValue.Text = "";
+                    }
+                }
             }
         }
 

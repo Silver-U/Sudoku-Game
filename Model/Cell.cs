@@ -73,6 +73,11 @@ namespace Sudoku_Games.Model
             return potentialValues;
         }
 
+        public void setPotentialValue(HashSet<int> hs)
+        {
+            potentialValues = new HashSet<int>(hs);
+        }
+
         public bool HasPn()
         {
             return !(potentialValues.Count() == 0 || potentialValues == null);
